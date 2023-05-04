@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import "./styles/formPost.css";
 import { useForm } from "react-hook-form";
 import usePostCrud from "../../hooks/usePostCrud";
 
 const FormPost = ({ isCloseForm, setIsCloseForm, socket }) => {
   const { handleSubmit, reset, register } = useForm();
+  const [file, setFile] = useState([]);
 
   const handleClick = (e) => {
     setIsCloseForm(true);
@@ -19,7 +20,9 @@ const FormPost = ({ isCloseForm, setIsCloseForm, socket }) => {
     const formData = new FormData();
     formData.append("title", data.title);
     formData.append("content", data.description);
-    formData.append("postImgs", data.file);
+    for (let i = 0; i < file.length; i++) {
+      formData.append("postImgs", file[i]);
+    }
     createNewPost(formData, socket);
     reset();
   };
@@ -65,13 +68,7 @@ const FormPost = ({ isCloseForm, setIsCloseForm, socket }) => {
             name="file"
             accept="image/*"
             multiple
-            {...register("file", {
-              required: true,
-              validate: {
-                maxFiles: (files) =>
-                  files.length <= 3 || "No se pueden subir más de 3 archivos",
-              },
-            })}
+            onChange={(e) => setFile(e.target.files)}
           />
         </div>
         <button className="formpost__btn">Create</button>
