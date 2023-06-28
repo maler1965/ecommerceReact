@@ -14,16 +14,13 @@ const PostCard = ({ post }) => {
       <header className="post__header">
         <img
           className="post__image"
-          src={
-            post.image?.[0] ||
-            "https://concepto.de/wp-content/uploads/2015/03/paisaje-e1549600034372.jpg"
-          }
+          src={post?.postImgs[1].postImgUrl}
           alt=""
         />
       </header>
       <section className="post__body">
         <h3 className="post__title">{post.title}</h3>
-        <p className="post__content">{post.content}</p>
+        <p className="post__content">{post?.content?.slice(0, 200)} ...</p>
       </section>
       <section className="post__footer">
         <header className="post__avatar">

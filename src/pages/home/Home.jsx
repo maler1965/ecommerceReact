@@ -12,9 +12,10 @@ const Home = () => {
   const dispatch = useDispatch();
 
   const [isCloseForm, setIsCloseForm] = useState(true);
-  const { socket, online } = useSocket("http://localhost:3100");
+  const { socket, online } = useSocket("http://localhost:3000");
 
   useEffect(() => {
+    console.log(posts);
     socket.on("render-new-post", (data) => {
       dispatch(addPost(data));
       console.log("Se ha creado un post", data);
