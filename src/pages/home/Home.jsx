@@ -36,14 +36,17 @@ const Home = () => {
         will guide you through a fascinating intellectual journey. Join us in
         the quest for endless knowledge.
       </p>
+
       <div className="home__post-container">
         {posts?.posts.map((post) => (
           <PostCard key={post.id} post={post} />
         ))}
       </div>
+
       <button onClick={handleCreatePost} className="home__btn">
         +
       </button>
+
       <FormPost
         isCloseForm={isCloseForm}
         setIsCloseForm={setIsCloseForm}

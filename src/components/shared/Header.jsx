@@ -21,6 +21,8 @@ const Header = () => {
 
   const { user } = useSelector((state) => state);
 
+  console.log(user);
+
   return (
     <header className="header">
       <nav className="header__nav">

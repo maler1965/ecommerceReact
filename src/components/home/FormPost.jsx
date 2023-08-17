@@ -18,11 +18,14 @@ const FormPost = ({ isCloseForm, setIsCloseForm, socket }) => {
 
   const submit = (data) => {
     const formData = new FormData();
+
     formData.append("title", data.title);
     formData.append("content", data.description);
+
     for (let i = 0; i < file.length; i++) {
       formData.append("postImgs", file[i]);
     }
+
     createNewPost(formData, socket);
     reset();
   };

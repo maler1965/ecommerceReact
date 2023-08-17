@@ -17,7 +17,7 @@ export const loginThunk = (data) => (dispatch) => {
   blogApi
     .post("/auth/login", data)
     .then((res) => {
-      console.log(res);
+      console.log(res.data.token);
       localStorage.setItem("token", res.data.token);
       dispatch(setUser(res.data.user));
     })

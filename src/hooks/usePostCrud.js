@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { getAllPostThunk } from "../store/slices/posts.slice";
 import { getMyPostsThunk } from "../store/slices/myPosts.slice";
 import { useState } from "react";
+import axios from "axios";
 
 const usePostCrud = () => {
   const [postId, setPostId] = useState();
@@ -11,8 +12,12 @@ const usePostCrud = () => {
 
   // POST - Crear un nuevo posts
   const createNewPost = (formData, socket) => {
-    blogApi
-      .post("/posts", formData)
+    const headers = {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    };
+
+    axios
+      .post("http://localhost:3000/api/v1/posts", formData, { headers })
       .then((res) => {
         socket.emit("new-post", res.data.post);
         dispatch(getAllPostThunk());
