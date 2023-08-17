@@ -15,7 +15,7 @@ export default userSlice.reducer;
 
 export const loginThunk = (data) => (dispatch) => {
   blogApi
-    .post("/auth/login", data)
+    .post("/auth/signin", data)
     .then((res) => {
       console.log(res.data.token);
       localStorage.setItem("token", res.data.token);

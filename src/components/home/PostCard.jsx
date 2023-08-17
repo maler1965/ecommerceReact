@@ -4,7 +4,7 @@ import moment from "moment";
 
 const PostCard = ({ post }) => {
   const navigate = useNavigate();
-
+  console.log(post)
   const handleCardClick = () => {
     navigate(`/post/${post.id}`);
   };
@@ -14,7 +14,7 @@ const PostCard = ({ post }) => {
       <header className="post__header">
         <img
           className="post__image"
-          src={post?.postImgs[0]?.postImgUrl}
+          src={post?.PostImgs[0]?.postImgUrl}
           alt=""
         />
       </header>

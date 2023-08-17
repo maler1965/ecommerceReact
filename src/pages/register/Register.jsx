@@ -17,9 +17,8 @@ const Register = () => {
     formData.append("name", data.name);
     formData.append("email", data.email);
     formData.append("password", data.password);
-    console.log(file[0]);
     formData.append("profileImgUrl", file[0]);
-    formData.append("profileImgUrl", data.profileImgUrl);
+    // formData.append("profileImgUrl", data.profileImgUrl);
     formData.append("description", data.description);
     reset({
       name: "",

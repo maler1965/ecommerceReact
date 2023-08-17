@@ -13,7 +13,7 @@ const Home = () => {
 
   const [isCloseForm, setIsCloseForm] = useState(true);
   const { socket, online } = useSocket("http://localhost:3000");
-
+  
   useEffect(() => {
     console.log(posts);
     socket.on("render-new-post", (data) => {
