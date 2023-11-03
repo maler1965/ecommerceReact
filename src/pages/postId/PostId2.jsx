@@ -4,39 +4,34 @@ import { useEffect } from "react";//
 import UserInfo from "../../components/postId/UserInfo";//
 import PostIdInfo from "../../components/postId/PostIdInfo";//
 import "./postId.css"; //
-//import useComment from "../../hooks/useComment";//
+//import PostId from "./pages/postId/PostId";//
+import PostId from "./PostId";
 /* ----------- */
 
 
 
-const PostId = () => {
+const PostId2 = () => {
   
+/*
   const { postId, getPostById } = usePostCrud();
-
-  const comment =  localStorage.getItem("comment")
-  //const { comment } = useComment();
 
   const { id } = useParams();
   console.log({id});
 
- console.log({comment});
-
-/**/
   useEffect(() => {
     getPostById(id);
     console.log({postId});
-  }, [ comment ]);
-  
+  }, []);
 
-  //getPostById(id);
   console.log({postId});
 
+  */
+
   return (
-    <div className="postid_content">
-      <UserInfo postId={postId} />
-      <PostIdInfo postId={postId} />
+    <div >
+      <PostId  />
     </div>
   );
 };
 
-export default PostId;
+export default PostId2;

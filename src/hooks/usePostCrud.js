@@ -5,13 +5,17 @@ import { getMyPostsThunk } from "../store/slices/myPosts.slice";
 import { useState } from "react";
 import axios from "axios";
 
+
 const usePostCrud = () => {
   const [postId, setPostId] = useState();
 
   const dispatch = useDispatch();
 
+  
   // POST - Crear un nuevo posts
   const createNewPost = (formData, socket) => {
+
+    //puso aqui el headers porque en api/blog.js no le funcionaba
     const headers = {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     };
@@ -25,6 +29,9 @@ const usePostCrud = () => {
       })
       .catch((err) => console.log(err));
   };
+
+
+
   // UPDATE - Actualizar un post
   const updatePostById = (id, data) => {
     blogApi
@@ -47,10 +54,30 @@ const usePostCrud = () => {
   };
   // GET - Obtener posts por ID
   const getPostById = (id) => {
-    blogApi
-      .get(`/posts/${id}`)
-      .then((res) => setPostId(res.data.post))
-      .catch((err) => console.log(err));
+   // blogApi
+     // .get(`/posts/${id}`)
+
+     const headers = {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    };
+  
+    
+    axios
+      .get(`http://localhost:3000/api/v1/posts/${id}`, { headers })
+
+      .then((res) => {
+        // socket.emit("new-post", res.data.post);
+        console.log("probando getPostById", res.data);
+        setPostId(res.data.post);
+       })
+       .catch(err => {
+         console.log("probando getPostById, estoy en error")
+         console.log(err)
+         }
+         )
+
+      //.then((res) => setPostId(res.data.post))
+     // .catch((err) => console.log(err));
   };
 
   return {
@@ -62,4 +89,4 @@ const usePostCrud = () => {
   };
 };
 
-export default usePostCrud;
+export default usePostCrud; //para usar esta funcion primero se llama por este nombre usePostCrud(), luego se pone cual funcion o estado interno quiere uno importar, de las que se estan retornando

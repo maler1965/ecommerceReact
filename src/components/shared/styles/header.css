@@ -1,6 +1,6 @@
 .header {
   width: 100%;
-  border-bottom: 1px solid #0002;
+  border-bottom: 1px solid rgba(207, 54, 54, 0.133);
   height: var(--height-header);
 }
 
@@ -14,6 +14,7 @@
 .header__logo {
   width: 3.5em;
   height: 3.5em;
+  color: rgb(161, 96, 96)
 }
 
 .header__list {
@@ -25,13 +26,13 @@
 
 .header__item > * {
   text-decoration: none;
-  color: #0008;
+  color: rgba(134, 67, 67, 0.533);
   transition: color 200ms ease-in;
 }
 
 .header__item > *:hover {
   text-decoration: none;
-  color: #000;
+  color: #855656;
 }
 
 .header__img-content {
@@ -56,8 +57,8 @@
   right: 18.5%;
   width: 120px;
   padding: 8px;
-  background-color: #fff;
-  box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2);
+  background-color: #7a5353;
+  box-shadow: 0px 1px 5px rgba(155, 124, 124, 0.2);
   border-radius: 4px;
   display: flex;
   flex-direction: column;

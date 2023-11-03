@@ -1,9 +1,10 @@
-import React, { useState } from "react";
-import "./styles/formPost.css";
-import { useForm } from "react-hook-form";
-import usePostCrud from "../../hooks/usePostCrud";
+import React, { useState } from "react";//
+import "./styles/formPost.css";//
+import { useForm } from "react-hook-form";//
+import usePostCrud from "../../hooks/usePostCrud";//
 
 const FormPost = ({ isCloseForm, setIsCloseForm, socket }) => {
+  
   const { handleSubmit, reset, register } = useForm();
   const [file, setFile] = useState([]);
 
@@ -14,9 +15,11 @@ const FormPost = ({ isCloseForm, setIsCloseForm, socket }) => {
     e.stopPropagation();
   };
 
-  const { createNewPost } = usePostCrud();
+  const { createNewPost } = usePostCrud();//del archivo  usePostCrud.js que tiene a la funcion usePostCrud() se saca una funcion que tiene internamente llamada createNewPost() para poder llenarla con los datos que requiere de parametros y poder enviarla llena para que haga su funcion
+
 
   const submit = (data) => {
+
     const formData = new FormData();
 
     formData.append("title", data.title);
@@ -26,9 +29,11 @@ const FormPost = ({ isCloseForm, setIsCloseForm, socket }) => {
       formData.append("postImgs", file[i]);
     }
 
-    createNewPost(formData, socket);
+    createNewPost(formData, socket);  //aqui recien usa la funcion  que obtuvo antes para ponerle los datos y hacer la peticion http
     reset();
+
   };
+
 
   return (
     <div

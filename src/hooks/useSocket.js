@@ -2,12 +2,12 @@ import { useMemo, useEffect, useState } from "react";
 import io from "socket.io-client";
 
 export const useSocket = (serverPath) => {
-  const socket = useMemo(
+  const socket = useMemo( //es para recordar datos, memorisar
     () =>
       io.connect(serverPath, {
         transports: ["websocket"],
       }),
-    [serverPath]
+    [serverPath] //esto es lo que recordara,  asi se impide que este repitiendo el renderizado, en este caso mantiene la coneccion
   );
 
   const [online, setOnline] = useState(false);

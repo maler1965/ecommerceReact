@@ -8,7 +8,7 @@
 }
 
 .home__description {
-  color: #0006;
+  color: rgba(5, 0, 0, 0.4);
 }
 
 .home__post-container {
@@ -34,6 +34,33 @@
   opacity: 0.5;
 }
 .home__btn:hover {
+  filter: brightness(1.15);
+  transform: scale(1.1);
+  box-shadow: 0 0 0.5em #0003;
+  opacity: 1;
+  transition: transform 100ms ease, box-shadow 100ms ease, opacity 500ms ease;
+}
+
+/* ==================*/
+
+.home__btn2 {
+  background-color: rgb(23, 121, 62);
+  color: white;
+  font-weight: 200;
+  font-size: 1rem;
+  position: fixed;
+  bottom: 15%;
+  right: 5%;
+  width: 9em;
+  text-align: center;
+  height: 50px;
+  aspect-ratio: 1;
+  border-radius: 20%;
+  transition: transform 100ms ease, box-shadow 100ms ease;
+  opacity: 0.8;
+  padding: 1rem;
+}
+.home__btn2:hover {
   filter: brightness(1.15);
   transform: scale(1.1);
   box-shadow: 0 0 0.5em #0003;
