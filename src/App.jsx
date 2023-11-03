@@ -33,6 +33,7 @@ function App() {
 
   //<Route path="/post" element={<PostId2 />} />
   //className="app"
+  //pedro
 
   return (
     <div className='bg-white min-h-screen '>

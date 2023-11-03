@@ -44,6 +44,8 @@ const Home = () => {
   
   */
 
+  //pedro
+
   return (
 
     
@@ -52,6 +54,7 @@ const Home = () => {
 {/* */}
 
       <h1 className="font-bold p-8">CAMBIA O VENDE en TU PROVINCIA, en TU CIUDAD</h1>   {/* */}
+
 
       <p className="p-4" > {/*className="home__description " */}
         En esta pagina podras cambiar o vender eso que ya no utilizas en tu casa, o si tienes un negocio puedes exponer tus productos aqui y mejorar tus ventas. 
