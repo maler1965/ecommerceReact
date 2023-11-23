@@ -4,7 +4,10 @@ import { loginThunk } from "./../../store/slices/user.slice";//
 import { useNavigate } from "react-router-dom";//
 import "./login.css"; //
 
+
+
 const Login = () => {
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -38,7 +41,9 @@ const Login = () => {
 //pedro
 
   return (
-    <div className="login">
+<section  className="m-4">
+
+    <div className="login">   
 
       <h1 className="login__title">Para Cambiar o Vender tienes que Entrar</h1>
       <div className="login__form">
@@ -84,6 +89,8 @@ const Login = () => {
       </form>
 
     </div>
+    
+    </section>
   );
 };
 

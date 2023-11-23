@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";//
 import { useNavigate } from "react-router-dom";//
 
 
+
 const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
   //const [admin, setAdmin] = useState(false);
@@ -60,19 +61,39 @@ const Header = () => {
 
       {/*  =================================== */}
 
-    <header className=" flex justify-center items-center text-white  bg-violet-400 h-[60px] ">
+    <header className="flex text-white items-center  bg-violet-400 h-[60px] ">
       
-     <img src={Logo} alt=""  className=" h-[30px] px-4" />    {/*   */}
-      
-     <p className="items-center text-black font-bold">CAMBIA O VENDE </p> 
-      
+      <div className=" flex justify-start items-center ">
+
+      <div  >
+         <img src={Logo} alt=""  className=" h-[30px] px-4" />    {/*flex justify-between    */}  
+      </div>
+
+        
+      <div>
+        <p className="items-center  font-bold"> <span className=" text-black">CAMBIA</span><span>O</span><span className="text-amber-400">VENDE</span>  </p> 
+  
+      </div>
+    
+      </div>
+     
+
+     
+
+
+      <div className="flex-grow"  >
+      <p className="text-center  text-white "> Saca esas cosas que no usas y <span className="font-bold "> CAMBIALAS o VENDELAS</span>  aqui</p>
+    </div>
+
+    
+    
      
     </header>
 
 
 
 
- <div className="  bg-black h-[60px] flex justify-between   ">
+ <div className="  bg-black h-[60px] flex justify-end  items-center ">
 
 <nav > {/*className="header__nav "   */}
         
@@ -80,23 +101,28 @@ const Header = () => {
 
         <ul className="flex justify-center"> {/* header__list  */}
 
-          <li className=" text-white font-bold p-2"> {/* header__item  */}
+          <li className=" text-white flex items-center font-bold mx-4 p-2"> {/* header__item  */}
             <Link className="text-white font-bold " to="/">Productos</Link> {/* navega hacia las rutas que estan en el App en Router */}
           </li>
 
           {user?.id ? (
             <>
             
-              <li className=" text-white font-bold"> {/*  header__item */}
-                <Link className="text-white font-bold" to="/user/profile/me">Mis Productos</Link> {/* navega hacia las rutas que estan en el App en Router */}
+              <li className="flex items-center "> {/*header__item      text-white font-bold        */}
+              <div className="  ">
+                 <Link className="text-white flex-col items-center mx-4 font-bold" to="/user/profile/me">Mis Productos</Link> {/* navega hacia las rutas que estan en el App en Router */}
+          
+              </div>
               </li>
 
-              <li className=" text-white font-bold " onClick={handleImageClick}> {/*header__img-content   */}
+              <li  className=" relative p-2 " onClick={handleImageClick}> {/* className="header__img-content  " text-white font-bold   */}
+                {/*picture   */}
                 <img
                   src={user.profileImgUrl}
-                  className="picture "
+                className=" w-[40px] h-[40px] m-2 rounded-[50%] "
                   alt="Profile"
                 />
+
                 {showMenu && (
                   <div className="menu">
                     <button className=" text-white font-bold" onClick={handleLogout}> {/* logoutButton  */}
@@ -111,11 +137,11 @@ const Header = () => {
             
 
               <li className=" text-white font-bold p-2"> {/* header__item  */}
-                <Link className="text-white font-bold" to="/register">Registro</Link> {/* navega hacia las rutas que estan en el App en Router */}
+                <Link className="text-white mx-4 font-bold" to="/register">Registro</Link> {/* navega hacia las rutas que estan en el App en Router */}
               </li>
 
               <li className=" text-white font-bold p-2"> {/* header__item  */}
-                <Link className="text-white font-bold" to="/login">Entrar</Link> {/* navega hacia las rutas que estan en el App en Router */}
+                <Link className="text-white mx-4 font-bold" to="/login">Entrar</Link> {/* navega hacia las rutas que estan en el App en Router */}
               </li>
 
 {/* 

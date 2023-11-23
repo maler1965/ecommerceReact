@@ -1,10 +1,10 @@
 .userinfo__content {
-  width: 60%;
+  width: 50%;
   margin-left: 20%;
   display: flex;
   justify-content: space-between;
   margin-top: 3em;
-  margin-bottom: 3em;
+  margin-bottom: 1em;
 }
 
 .userinfo__header {
@@ -25,7 +25,7 @@
 }
 
 .userinfo__name {
-  font-weight: 400;
+  font-weight: 500;
 }
 
 .userinfo__body > h3 > span {

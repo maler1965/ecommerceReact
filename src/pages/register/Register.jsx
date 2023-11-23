@@ -5,7 +5,9 @@ import { registerThunk } from "./../../store/slices/user.slice";
 import { useState } from "react";//
 import { useNavigate } from "react-router";//
 
+
 const Register = () => {
+  
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

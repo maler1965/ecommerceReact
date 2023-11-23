@@ -2,11 +2,24 @@
   width: 100%;
   margin: 0 auto;
   padding: 20px;
-  background-color: #f5f5f5;
+  background-color: #529fcf;
   border-radius: 10px;
 }
 
 .comment-section h2 {
+  font-size: 24px;
+  text-align: center;
+}
+
+.comment-section2 {
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: rgb(95, 70, 124);
+  border-radius: 10px;
+}
+
+.comment-section2 h2 {
   font-size: 24px;
   text-align: center;
 }
@@ -30,12 +43,16 @@
 }
 
 .comment-form {
-  margin-top: 20px;
+  margin-top: 10px;
+ 
 }
+
+
 
 .comment-form label {
   display: block;
   font-weight: bold;
+
 }
 
 .comment-form textarea {

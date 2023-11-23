@@ -1,12 +1,14 @@
-import { useState } from "react";
-import "./styles/userinfo.css";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";//
+import "./styles/userinfo.css";//
+import { useNavigate } from "react-router-dom";//
 
-const UserInfo = ({ postId }) => {
+const UserInfo = ({ postId, postId2 }) => {
 
   const [isFollow, setIsFollow] = useState(false);
 
   console.log({postId});
+  console.log({postId2});
+  //console.log({postUser});
 
   const navigate = useNavigate();
 
@@ -19,27 +21,42 @@ const UserInfo = ({ postId }) => {
   return (
     <article className="userinfo__content">
 
-      <header className="userinfo__header">
-        <img src={postId?.user?.profileImgUrl} alt="" />
-      </header>
+      
 
       <section className="userinfo__body">
 
-        <h3>
+<div className="text-2xl">
+   
 
           <p className="userinfo__name" >
-            {postId?.user?.name}
+            {postId2?.user?.name}
           </p>
+</div>
 
-          <span onClick={handleCardClick}  >{isFollow ? " Soy su Seguidor" : "Seguir" }</span>
+<h3>
+   <span onClick={handleCardClick}  >{isFollow ? " Soy su Seguidor" : "Seguir" }</span>
+</h3>
+         
           
-        </h3>
+        
 
-        {/* TODO: Covertir el nombre en link */}
-        <p>{postId?.user?.description}</p>
-        <small>22 Jult 2020</small>
+       
+
+        {/* */}
+
+        <p>{postId2?.user?.description}</p>
+
+        <small>22 Jul 2023</small>  
 
       </section>
+
+
+
+      <header className="userinfo__header">
+        <img src={postId2?.user?.profileImgUrl} alt="" />
+      </header>
+      
+     
 
     </article>
   );

@@ -48,7 +48,7 @@ const FormPost = ({ isCloseForm, setIsCloseForm, socket }) => {
         <h2 className="formpost__title">Create a new Post</h2>
         <div className="formpost__section">
           <label className="formpost__label" htmlFor="post-title">
-            Post Title
+            Titulo del Producto
           </label>
           <input
             className="formpost__input"
@@ -59,7 +59,7 @@ const FormPost = ({ isCloseForm, setIsCloseForm, socket }) => {
         </div>
         <div className="formpost__section">
           <label className="formpost__label" htmlFor="post-description">
-            Description
+            Descripcion, y explica si cambias, vendes o las dos cosas.
           </label>
           <input
             className="formpost__input"
@@ -79,7 +79,7 @@ const FormPost = ({ isCloseForm, setIsCloseForm, socket }) => {
             onChange={(e) => setFile(e.target.files)}
           />
         </div>
-        <button className="formpost__btn">Create</button>
+        <button className="formpost__btn">Crear anuncio</button>
       </form>
     </div>
   );

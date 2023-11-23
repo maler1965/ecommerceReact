@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";//
 //import blogApi from "../../api/blog"; //
-import axios from "axios";
+import axios from "axios";//
+
+
 
 const myPostsSlice = createSlice({
   name: 'myPosts',
@@ -21,6 +23,7 @@ export default myPostsSlice.reducer
 
 // 
 export const getMyPostsThunk = () => (dispatch) => {
+
 
   const headers = {
     Authorization: `Bearer ${localStorage.getItem("token")}`,

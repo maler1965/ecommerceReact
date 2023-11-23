@@ -8,6 +8,7 @@ import axios from "axios";
 
 const usePostCrud = () => {
   const [postId, setPostId] = useState();
+  const [postId2, setPostId2] = useState();
 
   const dispatch = useDispatch();
 
@@ -52,6 +53,10 @@ const usePostCrud = () => {
       })
       .catch((err) => console.log(err));
   };
+
+
+
+
   // GET - Obtener posts por ID
   const getPostById = (id) => {
    // blogApi
@@ -80,12 +85,38 @@ const usePostCrud = () => {
      // .catch((err) => console.log(err));
   };
 
+
+
+  const getPostById2 = (id) => {
+   
+     
+     axios
+       .get(`http://localhost:3000/api/v1/posts/one/${id}`, )
+ 
+       .then((res) => {
+         // socket.emit("new-post", res.data.post);
+         console.log("probando getPostById2", res.data);
+         setPostId2(res.data.post);
+        })
+        .catch(err => {
+          console.log("probando getPostById2, estoy en error2")
+          console.log(err)
+          }
+          )
+ 
+       //.then((res) => setPostId(res.data.post))
+      // .catch((err) => console.log(err));
+   };
+
+
   return {
     createNewPost,
     updatePostById,
     deletePostById,
     getPostById,
+    getPostById2,
     postId,
+    postId2,
   };
 };
 

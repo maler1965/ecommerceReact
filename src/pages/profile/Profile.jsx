@@ -6,6 +6,7 @@ import ProfileInfo from "../../components/profile/ProfileInfo";//
 import PostUserCard from "./../../components/userId/PostUserCard";//
 import { useSelector } from "react-redux";//
 
+
 export const Profile = () => {
   //const dispatch = useDispatch();
   //dispatch(getMyPostsThunk())

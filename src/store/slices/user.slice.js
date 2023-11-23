@@ -4,7 +4,7 @@ import blogApi from "../../api/blog";
 const userSlice = createSlice({
   name: "user",
   initialState: {
-    user: localStorage.getItem("user") ?? null,
+    user: localStorage.getItem("user")   ?? null,
     },
 
   reducers: {//payload es donde se recoge los datos que se envian para guardar, lo guarda o carga el estado con estos nuevos datos, anula el dato inicial que tenia
@@ -25,6 +25,9 @@ const userSlice = createSlice({
 export const { setUser } = userSlice.actions;
 
 export default userSlice.reducer;
+
+
+
 
 export const loginThunk = (data) => (dispatch) => { //esto es una funcion que se lo hace disponible, mediante exportarlo, para que lo usen desde otra pagina y recibe como parametros los datos que el usuario ha introducido en los input del login, y tambien recibe el dispatch, para hacerlos disponible dentro de la funcion
   blogApi  // a la informacion que tiene esta variable se le une lo que comienza con el punto, y asi se completa la ruta final para hacer la solicitud a la base de datos mediante axion

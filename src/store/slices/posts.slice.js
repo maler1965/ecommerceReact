@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import blogApi from "../../api/blog";
+//import blogApi from "../../api/blog";
+import axios from "axios";//
 
 const postsSlice = createSlice({
   name: "posts",
@@ -21,8 +22,13 @@ export default postsSlice.reducer;
 //=======================================
 
 export const getAllPostThunk = () => (dispatch) => { //dispatch es para enviar informacion
-  blogApi
-    .get("/posts")
+ // blogApi
+ const headers = {
+  Authorization: `Bearer ${localStorage.getItem("token")}`,
+};
+
+axios
+    .get("http://localhost:3000/api/v1/posts" , { headers } )
     .then((res) => {
     console.log("probando Posts", res.data)
     dispatch(setPost(res.data))})

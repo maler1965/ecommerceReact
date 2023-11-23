@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 
-export const Carrousel = ({ postImgs }) => {
+export const Carrousel = ({ PostImgs }) => {
 
   
   useEffect(() => {
-    console.log({postImgs});
+    console.log({PostImgs});
   }, []);
 
   return (
@@ -41,7 +41,7 @@ export const Carrousel = ({ postImgs }) => {
 
           <div className="carousel-item active">
             <img
-              src={postImgs[0]?.postImgUrl}
+              src={PostImgs[0]?.postImgUrl}
               className="d-block w-100 he-50"
               alt="Falta la 1..."
             />
@@ -49,7 +49,7 @@ export const Carrousel = ({ postImgs }) => {
 
           <div className="carousel-item">
             <img
-              src={postImgs[1]?.postImgUrl}
+              src={PostImgs[1]?.postImgUrl}
               className="d-block w-100 he-50"
               alt="Falta la 2..."
             />
@@ -57,7 +57,7 @@ export const Carrousel = ({ postImgs }) => {
 
           <div className="carousel-item">
             <img
-              src={postImgs[2]?.postImgUrl}
+              src={PostImgs[2]?.postImgUrl}
               className="d-block w-100 he-50"
               alt="Falta la 3..."
             />

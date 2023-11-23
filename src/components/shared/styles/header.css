@@ -26,8 +26,9 @@
 
 .header__item > * {
   text-decoration: none;
-  color: rgba(134, 67, 67, 0.533);
+  color: white;
   transition: color 200ms ease-in;
+  
 }
 
 .header__item > *:hover {

@@ -12,6 +12,7 @@ import Header from "./components/shared/Header";//
 import Home from "./pages/home/Home"; //
 import Login from "./pages/login/Login";//
 import PostId from "./pages/postId/PostId";//
+import PostId2 from "./pages/postId/PostId2";//
 import ProtectedRoutes from "./pages/shared/ProtectedRoutes";//
 import Register from "./pages/register/Register";//
 import PostCard2 from "./components/home/PostCard2";
@@ -38,10 +39,11 @@ function App() {
   return (
     <div className='bg-white min-h-screen '>
 
-      <div className=' h-[160px]'>
+      <div className=' h-[120px]'>
         <Header /> {/* del header pasa solo al home inicialmente, no entra al ProtectedRoutes, ni cuando se da clic en Entrar, login */}
 
       </div>
+      
       
       <Routes>
 
@@ -54,7 +56,8 @@ function App() {
         <Route path="/" element={<Home />} /> {/*estas rutas no estan protejidas */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/user" element={<PostCard2 />} />
+        <Route path="/user2/:id" element={<PostId2 />} />
+      {/*   <Route path="/user" element={<PostCard2 />} />*/}
         <Route path="*" element={<h1>Esta ruta no existe</h1>} />
 
       </Routes>
