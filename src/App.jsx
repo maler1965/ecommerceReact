@@ -45,6 +45,7 @@ function App() {
       </div>
       
       
+      
       <Routes>
 
         <Route element={<ProtectedRoutes />}> {/*solo se entra aqui cuando se ha hecho una llamada a unas de las path que estan dentro de este route */}
