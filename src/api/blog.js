@@ -1,7 +1,7 @@
 import axios from "axios";
 
 
-console.log(" estoy en blog api, con token ")
+console.log(" estoy en blog api inicio, con token ")
   
 const  blogApi = axios.create({
 
@@ -11,6 +11,12 @@ const  blogApi = axios.create({
 
     Authorization: `Bearer ${localStorage.getItem("token")}`,
   },
-});
+
+  
+}
+
+);
+
+console.log(" estoy en blog api final, con token ")
 
 export default blogApi;

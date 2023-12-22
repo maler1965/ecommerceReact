@@ -6,6 +6,9 @@ import PostUserCard from "./../../components/userId/PostUserCard";//
 
 export const UserId = () => {
 
+  console.log("estoy en inicio de  UserId.jsx  ")
+  console.log("estoy en final de  UserId.jsx  ")
+
   return (
 
     <div className="postid_content">

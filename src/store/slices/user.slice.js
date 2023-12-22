@@ -1,6 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";//
 import blogApi from "../../api/blog";
 
+
+console.log(" estoy en inicio de user.slice.js");
+
 const userSlice = createSlice({
   name: "user",
   initialState: {
@@ -28,14 +31,16 @@ export default userSlice.reducer;
 
 
 
-
 export const loginThunk = (data) => (dispatch) => { //esto es una funcion que se lo hace disponible, mediante exportarlo, para que lo usen desde otra pagina y recibe como parametros los datos que el usuario ha introducido en los input del login, y tambien recibe el dispatch, para hacerlos disponible dentro de la funcion
+ 
+  console.log("Estoy dentro de loginThunk antes de blogApi")
+
   blogApi  // a la informacion que tiene esta variable se le une lo que comienza con el punto, y asi se completa la ruta final para hacer la solicitud a la base de datos mediante axion
     .post("/auth/signin", data)
     .then((res) => {
      console.log(res.data.token);
       localStorage.setItem("token", res.data.token);
-   //   localStorage.setItem("user", res.data.user);
+      localStorage.setItem("user", JSON.stringify(res.data.user));
      dispatch(setUser(res.data.user));
     })
     .catch((err) => {
@@ -48,14 +53,17 @@ export const loginThunk = (data) => (dispatch) => { //esto es una funcion que se
 
 
 export const registerThunk = (formData) => (dispatch) => {
+
+  console.log("Estoy dentro de registerThunk  antes de blogApi")
+
   blogApi
     .post("/auth/signup", formData)
     .then((res) => {
-      //console.log(res);
+      console.log(res);
       localStorage.setItem("token", res.data.token);
      // localStorage.setItem("user", res.data.user);
-      //const pruevaUser = res.data.user
-      //console.log({pruevaUser});
+      const pruevaUser = res.data.user
+      console.log({pruevaUser});
       dispatch(setUser(res.data.user));
     })
     .catch((err) => {
@@ -64,12 +72,15 @@ export const registerThunk = (formData) => (dispatch) => {
 };
 
 export const renewThunk = () => (dispatch) => {
+
+  console.log("Estoy dentro de renewThunk  antes de blogApi")
+
 /**/
   blogApi
     .get("/auth/renew")
     
     .then((res) => {
-      //console.log({res});
+      console.log({res});
       localStorage.setItem("token", res.data.token);
       dispatch(setUser(res.data.user));
     })
@@ -79,3 +90,5 @@ export const renewThunk = () => (dispatch) => {
     });
     
 };
+
+console.log(" estoy en final de user.slice.js");

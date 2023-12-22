@@ -18,7 +18,17 @@ import Register from "./pages/register/Register";//
 import PostCard2 from "./components/home/PostCard2";
 //import PostId2 from "./pages/postId/PostId2";//
 
+/*
+console.log("estoy en inicio de  PostId  ")
+console.log("estoy en final de  PostId  ")
+*/
+
+
 function App() {
+
+  console.log("estoy en inicio de  App.jsx  ")
+ 
+
   const dispatch = useDispatch();
 
 /*
@@ -28,6 +38,7 @@ function App() {
   */
 
   useEffect(() => {  // En el renderizado, este hook se lo deja para hacerlo al final 
+    console.log("estoy dentro de useEffect para llamar getAllPostThunk desde  App  ")
     dispatch(getAllPostThunk());
     // dispatch(getMyPostsThunk())
   }, []);
@@ -35,15 +46,17 @@ function App() {
   //<Route path="/post" element={<PostId2 />} />
   //className="app"
   //pedro
+  console.log("estoy en final de  App.jsx  ")
 
   return (
     <div className='bg-white min-h-screen '>
 
       <div className=' h-[120px]'>
-        <Header /> {/* del header pasa solo al home inicialmente, no entra al ProtectedRoutes, ni cuando se da clic en Entrar, login */}
+        <Header /> {/* del header pasa solo al home inicialmente, las sigientes ocaciones va a la direccion de path que el programdor desea,  no entra al ProtectedRoutes, ni cuando se da clic en Entrar, login */}
 
       </div>
       
+
       
       
       <Routes>
@@ -64,6 +77,7 @@ function App() {
       </Routes>
 
       <Footer />
+      
 
     </div>
   );

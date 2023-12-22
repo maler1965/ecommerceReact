@@ -12,14 +12,26 @@ import Zamora from "./../../assets/zam2.png";//
 
 const Home = () => {
   
-  console.log(" estoy dentro de Home, inicio ")
+  console.log(" estoy dentro de Home.jsx, inicio ")
+
 
   const { posts } = useSelector((state) => state);
   console.log({ posts })
 
   const { user } = useSelector((state) => state);
 
-  const dispatch = useDispatch();
+  /*
+  let user1 = user
+
+  if (!user?.id) {
+    user1 = JSON.parse(localStorage.getItem("user"));//se lo convierte de json 
+    console.log({user1});
+  }
+
+    user = user1
+    */
+
+ // const dispatch = useDispatch();
 
   const [isCloseForm, setIsCloseForm] = useState(true);
 
@@ -48,10 +60,11 @@ const Home = () => {
   */
 
   //pedro
+console.log("estoy en final de  Home.jsx  ")
+
+
 
   return (
-
-    
 
     <div  >  {/*className="home" */}
 {/* */}
@@ -86,6 +99,7 @@ const Home = () => {
       
 
     </section>
+
 
 
 

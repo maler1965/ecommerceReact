@@ -4,8 +4,9 @@ import useComment2 from "../../hooks/useComment2";//
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-const Comment2 = ({ comments2 }) => {
+const Comment2 = ({ comments2, user, post }) => {
   
+  console.log("estoy en inicio de  Comment2.jsx ")
 
   const [newComment2, setNewComment2] = useState("");
   
@@ -15,26 +16,55 @@ const Comment2 = ({ comments2 }) => {
   const navigate = useNavigate();
  
 
-  const { id } = useParams();
+  //const { id } = useParams();
 
   console.log({ comments2 }) //
   console.log({ newComment2 })
+
+  
+
+
+
+  let length1 = comments2?.length
+
+  let commentPost = []
+
+  for ( let i = 0; i < length1 ; i++) {
+  
+  if (comments2?.[i]?.postId  === post?.id ) { 
+    commentPost.push(comments2?.[i]) 
+  }  
+
+   }
+
+
+
 
 
 
   const handleSubmit = (event) => {
 
     event.preventDefault();
-    createComment2(newComment2, id);
-     
+
+    console.log( "Estoy dentro de handleSubmit en comment2.jsx" )
+    console.log( "newComment2", newComment2 )
+    const textId2 = { textId2: newComment2, postId: post?.id }
+    console.log( "textId2", textId2 )
+    createComment2(textId2, user?.id);
+
+    const pru = user?.id
+     console.log({ textId2 })
+     console.log({ pru })
+
     setNewComment2("");
     
-    console.log({ newComment2 })
+    //
    // navigate(`/post/${id}`);
   };
 
 //<p className="user" >{comments?.[0].user?.name}: <span>{newComment} </span> </p>
 
+console.log("estoy en final de  Comment2.jsx ")
 
   return (
     
@@ -59,25 +89,25 @@ const Comment2 = ({ comments2 }) => {
 
       </form>
 
-       {/*
+      
 
       <ul className="comments-list">
 
-        {comments2?.map((comment2) => (
+        {commentPost?.map((comment2) => (
 
-          <li key={comment2.id}>
-            <span className="user">{comment2.text}: </span>
+          <li key={comment2?.id}>
+            <span className="user">{comment2?.name}: </span>
             {comment2?.text}          
           </li>         
 
         ))}
       
-     
+      {/*
       <p>
       <span className="comments-peter">Comentario actual: </span>   {comment}
-      </p> 
+      </p> */}
 
-      </ul> */}
+      </ul> 
 
     </div>
     

@@ -1,11 +1,13 @@
 import { useEffect } from "react";
 
 export const Carrousel = ({ PostImgs }) => {
-
+  console.log("estoy en inicio de  Carrousel.jsx ")
   
   useEffect(() => {
     console.log({PostImgs});
   }, []);
+
+  console.log("estoy en final de  Carrousel.jsx ")
 
   return (
     <div id="carouselExampleIndicators" className="carousel slide">

@@ -6,14 +6,18 @@ import { useNavigate } from "react-router-dom";
 
 
 const useComment2 = () => {
+
+  console.log("estoy en inicio de  useComment2.js  ")
+
   const [comment2, setComment2] = useState();
 
  // const dispatch = useDispatch();
  const navigate = useNavigate();
 
 
+  const createComment2 = (textId2, id) => {
 
-  const createComment2 = (text, id) => {
+    console.log("estoy dentro de createComment2 ,inicio")
 
     /*
     blogApi
@@ -22,13 +26,16 @@ const useComment2 = () => {
       const headers = {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       };
+
+      console.log("estoy dentro de createComment2 ,despues de headers")
        
       axios
-        .post(`http://localhost:3000/api/v1/comments2/${id}`, { text }, { headers })
+        .post(`http://localhost:3000/api/v1/comments2/${id}`, { textId2 }, { headers })
 
 
       .then((res) => { //aqui se define que es lo que se va a coger de lo que envia la api como respuesta
-        console.log({res});
+        console.log("estoy dentro de createComment2 ,despues de then")
+      console.log({res});
        // console.log(res.data.message);
        console.log(res.data.comment2.text);//"se creo"
         setComment2(res.data.comment2.text) //guardar comentario actual
@@ -56,6 +63,7 @@ const useComment2 = () => {
 
 const getComment2 = ( id) => {
 
+  console.log("estoy dentro de getComment2 ,inicio")
   /*
   blogApi
     .post(`/comments/${id}`, { text }) */
@@ -64,11 +72,14 @@ const getComment2 = ( id) => {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     };
      
+    console.log("estoy dentro de getComment2 ,despues de headers")
+
     axios
       .get(`http://localhost:3000/api/v1/comments2/`,  { headers }) //${id}
 
 
     .then((res) => { //aqui se define que es lo que se va a coger de lo que envia la api como respuesta
+      console.log("estoy dentro de getComment2 ,despues de then")
       console.log({res});
      console.log(res.data);
      console.log(res.data.comments2);//"se creo"
@@ -92,10 +103,12 @@ const getComment2 = ( id) => {
 
 };
 
-
+console.log({comment2})
 
 //==================
 
+
+console.log("estoy en final de  useComment2.js  ")
 
   return {
     createComment2, //al llamar a la funcion useComment puedes desetruccturar esta funcion o el estado de abajo comment

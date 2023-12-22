@@ -3,11 +3,15 @@ import { useNavigate } from "react-router-dom";//
 
 const ProfileInfo = ({ user }) => {
 
+  console.log("estoy en inicio de  ProfileInfo.jsx ")
+
   const navigate = useNavigate();
 
   const handleCardClick = () => {
     navigate(`/user/${user.id}`);
   };
+
+  console.log("estoy en final de  ProfileInfo.jsx ")
 
   return (
     <article className="userinfo__content">

@@ -8,6 +8,10 @@ import { useSelector } from "react-redux";//
 
 
 export const Profile = () => {
+
+  console.log("estoy en inicio de  Profile.jsx  ")
+  
+
   //const dispatch = useDispatch();
   //dispatch(getMyPostsThunk())
 
@@ -22,6 +26,8 @@ export const Profile = () => {
 
   console.log({ user })
   console.log({ myPosts})
+
+  console.log("estoy en final de  Profile.jsx  ")
 
   return (
     <div className="postid_content">

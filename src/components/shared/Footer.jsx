@@ -4,8 +4,11 @@ import "./styles/footer.css";//
 
 export const Footer = () => {
 
+  console.log("estoy en inicio de  Footer.jsx  ")
+
   //<p className="items-center  font-bold"> <span className=" text-black">CAMBIA</span><span>O</span><span className="text-amber-400">VENDE</span>  </p> 
 
+  console.log("estoy en final de  Footer.jsx  ")
   return (
 
     <footer className=" "> {/*  footer */}

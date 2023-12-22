@@ -7,11 +7,19 @@ import "./styles/postidinfo.css";
 import { useNavigate } from "react-router-dom";//
 import { Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";//
+import useComment from "../../hooks/useComment";//
+import usePostCrud from "../../hooks/usePostCrud";//
 
 
 
+const PostIdInfo = ({ comment2, comment1, comment4, postId2a, post, comment3 }) => { //
 
-const PostIdInfo = ({ comment2, comment1, postId2, post }) => {
+  console.log("estoy en inicio de  PostIdInfo.jsx ")
+
+  const [newComment2, setNewComment2] = useState("");
+  const [newComment3, setNewComment3] = useState("");
+  const { createComment1 } = useComment();// para traer el comentario actual
+  const { createComment2 } = useComment();// para traer el comentario actual
 
   const [sameUser, setSameUser] = useState(false);
 
@@ -21,11 +29,29 @@ const PostIdInfo = ({ comment2, comment1, postId2, post }) => {
   const [cambiarActivo, setCambiarActivo] = useState(false);
   const [comprarActivo, setComprarActivo] = useState(false);
 
-  const { user } = useSelector((state) => state);
+  const {postId2, deletePostById2One, deletePostById2All} = usePostCrud();
+
+  let { user } = useSelector((state) => state);
+  //const moreUser = user.user.id
   console.log({user});
+ // console.log({moreUser});
+
+ /*
+ let user1 = user
+
+ if (!user?.id) {
+   user1 = JSON.parse(localStorage.getItem("user"));//se lo convierte de json 
+   console.log({user1});
+ }
+
+   user = user1
+*/
+
 
   const { posts } = useSelector((state) => state);
   console.log({ posts })
+
+  console.log({ post })
 
   //let pedro = []
 const productId = post?.id
@@ -35,7 +61,17 @@ const productId = post?.id
   console.log({postId2});
   console.log({productId}); //console.log({postUser});
 
-  
+  const ped = postId2?.post?.commens
+  console.log({ped })
+
+  console.log({newComment2 })
+
+  const userPostId2 = postId2?.post.id
+  console.log({userPostId2 })
+  const userPostId3 = postId2?.post.user.id
+  console.log({userPostId3 })
+
+
 
   useEffect(() => {
   if (user?.id !== post?.user.id){
@@ -45,30 +81,63 @@ const productId = post?.id
   }, [ user ]);
 
 
-  const answer1 = []
-  const answer2 = []
+// primer filtro
+
+
+
+  const comment1a = []
+  const comment2a = []
   let length1 = comment1?.length
   let length2 = comment2?.length
 
-  console.log({length1});
-  console.log({length2});
+
+  for ( let pe = 0; pe < length1 ; pe++) {
+
+  if (comment1[pe]?.userId !== post?.user.id){   //los comentarios que son del mismo usuario no pasa, pues saldria repetido, ya salen arriba de estos comentarios
+    comment1a.push(comment1[pe])
+    console.log("dentro de igual usuario comment1[pe]")
+      }
+
+  }
+
+  for ( let pi = 0; pi < length2 ; pi++) {
+
+    if (comment2[pi]?.userId !== post?.user.id){   
+     comment2a.push(comment2[pi])
+      console.log("dentro de igual usuario comment2[pi]")
+        }
+  
+    }
+
+
+// segundo filtro
+
+  const answer1 = []
+  const answer2 = []
+  let length1a = comment1a?.length   // comment1a
+  let length2a = comment2a?.length  //comment2a
+
+  console.log({length1a});
+  console.log({length2a});
+
   const postMy = post?.id 
   console.log({postMy});
 
 
-  for ( let p = 0; p < length1 ; p++) {
 
-   if (comment1[p]?.postId !== post?.id ) {
-    answer1.push(comment1[p])
+  for ( let px = 0; px < length1a ; px++) {
+
+   if (comment1a[px]?.postId === post?.id ) {  //solo se guardan los comentarios que no son iguales
+    answer1.push(comment1a[px])
    }  
 
   }
 
 
-  for ( let p = 0; p < length2 ; p++) {
+  for ( let py = 0; py < length2a ; py++) {
 
-    if (comment2[p]?.postId !== post?.id ) {
-     answer2.push(comment2[p])
+    if (comment2a[py]?.postId === post?.id ) {
+     answer2.push(comment2a[py])
     }  
  
    }
@@ -78,21 +147,20 @@ const productId = post?.id
    console.log({answer2 })
 
 //=============================================
- //console.log(comment1?.[0].createdAt);
- //console.log(comment2?.[0].createdAt)
+
 
 
 
 /*
- const date1 = comment1?.[0].createdAt
- const date2 = comment2?.[0].createdAt
-*/
+
+
  
 
 const testId = user?.id
 
+let commentTotal3 = [ ]
 let commentTotal = [];
-//let commentTotal1 = [];
+
 let count = 0
 let index1 = comment1?.length - 1 //son los ultimos mensajes de cambio, solo el indice
 let index2 = comment2?.length - 1 //son los ultimos mensajes de compra, solo el indice
@@ -100,9 +168,7 @@ let index2 = comment2?.length - 1 //son los ultimos mensajes de compra, solo el 
 let e = 0
 let d = 0
 
- //commentTotal.push(comment1?.[index1 - e])
-//ped2 = ped.push(comment1?.[index1 - e].createdAt)
-//console.log({commentTotal})
+
 
 for ( let i = 0; i < 10 ; i++) {
 
@@ -113,50 +179,44 @@ const date2 = comment2?.[index2 - d]?.createdAt; //son los ultimos, la fecha tot
 //-----
 
  const year1 = date1?.slice(0, 4);//ano
- //console.log(year1);
+
 
  const month1 = date1?.slice(5, 7);//mes
- //console.log(month1);
+ 
 
  const day1 = date1?.slice(8, 10);//dia
- //console.log(day1);
+ 
 
  const hour1 = date1?.slice(11, 13);//hora
- //console.log(hour1);
+ 
 
  const minute1 = date1?.slice(14, 16);//minuto
- //console.log(minute1);
+
 
  const second1 = date1?.slice(17, 19);//seg
- //console.log(second1);
+
 
 //------------
 const year2 = date2?.slice(0, 4); //ano
-//console.log(year2);
+
 
 const month2 = date2?.slice(5, 7);//mes
- //console.log(month2);
+ 
 
  const day2 = date2?.slice(8, 10);//dia
- //console.log(day2);
+ 
 
  const hour2 = date2?.slice(11, 13);//hora
- //console.log(hour2);
+ 
 
  const minute2 = date2?.slice(14, 16);//minuto
- //console.log(minute2);
+ 
 
  const second2 = date2?.slice(17, 19);//seg
- //console.log(second2);
+ 
 
 //---------
-/*
-console.log(comment1?.length - 1);
-console.log(comment2?.length - 1)
 
-console.log(comment1?.[index1].createdAt); //son los ultimos
-console.log(comment2?.[index2].createdAt) //son los ultimos
-*/
 
 
 
@@ -168,7 +228,7 @@ commentTotal.push(comment1?.[index1 - e])
 } else {
 
   if (year1 < year2) {
-     commentTotal.push(comment2?.[index2 - d])
+     commentTotal3.push(comment2?.[index2 - d])
      count = 2
     } else {
 
@@ -178,7 +238,7 @@ if (month1 > month2) {
   } else {
   
     if (month1 < month2) {
-       commentTotal.push(comment2?.[index2 - d])
+       commentTotal3.push(comment2?.[index2 - d])
        count = 2
       } else {
 
@@ -188,12 +248,12 @@ if (day1 > day2) {
     } else {
     
       if (day1 < day2) {
-       commentTotal.push(comment2?.[index2 - d])
+       commentTotal3.push(comment2?.[index2 - d])
          count = 2
         } else {
 
 if (hour1 > hour2) {
-      commentTotal.push(comment1?.[index1 - e])
+      commentTotal3.push(comment1?.[index1 - e])
        count = 1
       } else {
       
@@ -208,7 +268,7 @@ if (minute1 > minute2) {
         } else {
         
           if (minute1 < minute2) {
-            commentTotal.push(comment2?.[index2 - d])
+            commentTotal3.push(comment2?.[index2 - d])
              count = 2
             } else {
 
@@ -218,7 +278,7 @@ if (minute1 > minute2) {
           } else {
           
             if (second1 < second2) {
-              commentTotal.push(comment2?.[index1 - d])
+              commentTotal3.push(comment2?.[index1 - d])
               count = 2
               }
           
@@ -276,8 +336,7 @@ if (minute1 > minute2) {
 
 
           //--------
-         // console.log({ commentTotal });
-         // console.log({ count });
+         
 
           if (count === 1 ) {
               e = e + 1 // para bajar el indice
@@ -288,18 +347,66 @@ if (minute1 > minute2) {
 
 }
 
+
+
+*/
+
+
+let length1b = comment1?.length
+
+
 let commentTotal1 = []
 
-  for ( let f = 0; f < 10 ; f++) {
+  for ( let f = 0; f < length1b ; f++) {
   
-  if (commentTotal?.[f]?.userId === user?.id ) {
-    commentTotal1.push(commentTotal?.[f])
+  if (comment1?.[f]?.userId === user?.id ) { //commentTotal
+    commentTotal1.push(comment1?.[f])  //commentTotal
   }  
-
 
    }
 
    console.log({commentTotal1 })
+
+   let commentTotal1a = []
+
+   for ( let fi = 0; fi < length1b ; fi++) {
+  
+    if (commentTotal1?.[fi]?.postId === post?.id) { //commentTotal
+      commentTotal1a.push(commentTotal1?.[fi])  //commentTotal
+    }  
+  
+     }
+
+     console.log({commentTotal1a })
+  const reverse1 = commentTotal1a.reverse()
+
+//=============
+let length2b = comment2?.length
+
+   let commentTotal2 = []
+
+  for ( let f2 = 0; f2 < length2b ; f2++) {
+  
+  if (comment2?.[f2]?.userId === user?.id ) {  //commentTotal3
+    commentTotal2.push(comment2?.[f2]) //commentTotal
+  }  
+
+   }
+
+
+   let commentTotal2a = []
+
+  for ( let fe = 0; fe < length2b; fe++) {
+  
+  if (commentTotal2?.[fe]?.postId === post?.id ) {  //commentTotal3
+    commentTotal2a.push(commentTotal2?.[fe]) //commentTotal
+  }  
+
+   }
+
+
+   console.log({commentTotal2a })
+   const reverse2 = commentTotal2a.reverse()
           
 //==========================================================
 
@@ -364,10 +471,61 @@ let commentTotal1 = []
   //commentTotal?.slice(0).reverse().map((commentTotal)
 
   
-  const check2 = user?.id
+const check2 = user?.id
  console.log({ check2})
  console.log({ sameUser})
 
+
+
+ const handleSubmit = (event) => {
+
+  event.preventDefault();
+
+  const textId1 = { textId1: newComment2, postId: post?.id }
+  console.log( "textId1", textId1 )
+  createComment1(textId1, user?.id);
+
+  //createComment1(newComment2, check2);
+   
+  setNewComment2("");
+  navigate(`/post/${check2}`);
+};
+
+const handleSubmit2 = (event) => {
+
+  event.preventDefault();
+
+  const textId2 = { textId2: newComment3, postId: post?.id }
+  console.log( "textId2", textId2 )
+  createComment2(textId2, user?.id);
+
+  //createComment2(newComment3, check2);
+   
+  setNewComment3("");
+  navigate(`/post/${check2}`);z
+};
+
+const handleDeleteClick = () => {
+
+  deletePostById2One(user?.id);
+  //navigate(`/user2/${productId}`);
+  navigate(`/post/${user?.id}`);
+  //postId2a = []
+ }
+
+ const handleDeleteClickAll = () => {
+
+  deletePostById2All(user?.id);
+ // navigate(`/user2/${productId}`);
+  navigate(`/post/${user?.id}`);
+ // postId2a = []
+ }
+
+ //deletePostById2All
+
+ console.log("estoy en final de  PostIdInfo.jsx ")
+
+ console.log({ comment1})
 
   return (
     <div>
@@ -379,11 +537,11 @@ let commentTotal1 = []
          <div>
 
           <div  className="text-center p-2 m-4 text-2xl">
-            <h2>{postId2?.title}</h2>
+            <h2>{postId2a?.post.title}</h2>
           </div>
            
           <div className=" flex justify-center text-center text-2xl">
-            <img src={postId2?.PostImgs?.[0].postImgUrl} alt="" /> 
+            <img src={postId2a?.post.PostImgs?.[0].postImgUrl} alt="" /> 
           </div>
               
 
@@ -397,7 +555,7 @@ let commentTotal1 = []
           <div className="m-4 m-8 px-4">
             {/*  <h2>hola</h2>*/}
              
-              <p> {postId2?.content}</p>
+              <p> {postId2a?.post.content}</p>
 
               <h2>Precio:</h2>
 
@@ -427,9 +585,16 @@ let commentTotal1 = []
 
 
 
+
+
+
               <span  >{ sameUser?  
                  
                  
+
+
+
+
 
               <div className=" bg-white mx-4 mb-2 text-center  p-2 rounded-md">
              
@@ -447,7 +612,7 @@ let commentTotal1 = []
              <span  >{ sale?  
              
              <div className="mb-2">
-              <Comment1 comments1={comment1} /> 
+              <Comment1 comments1={comment1} user={user} post={post} /> 
              </div>
     
              : " " }</span> 
@@ -457,7 +622,7 @@ let commentTotal1 = []
             <span  >{ sale2?  
              
              <div className="mb-2">
-              <Comment2 comments2={comment2} /> 
+              <Comment2 comments2={comment2} user={user} post={post}/> 
              </div>
     
              : " " }</span> 
@@ -466,7 +631,19 @@ let commentTotal1 = []
 
             </div>
           
-          :
+
+
+
+
+
+          :   
+
+
+
+
+
+
+
 
           <div>
 
@@ -477,6 +654,48 @@ let commentTotal1 = []
            
 
           <h2 className="font-bold text-center">QUIEREN CAMBIAR</h2>
+
+
+          <form className="comment-form" onSubmit={handleSubmit}>
+
+            <label htmlFor="new-comment">Respuesta:</label>
+
+            <textarea
+              id="new-comment"
+               name="new-comment"
+               value={newComment2}
+                onChange={(event) => setNewComment2(event.target.value)}
+              required
+            />
+
+            <button type="submit">Contestar</button>
+
+          </form>
+
+             
+
+          <ul className="comments-list">
+             
+
+             {reverse1?.map((reverse1) => (    
+                        
+             <li className="bg-white text-black m-2 p-2 rounded-md" key={reverse1?.createdAt}>
+               <span className="user">{user?.name}: </span>
+              {reverse1?.text}          
+             </li>         
+
+             ))}
+
+           </ul>
+
+             
+              <br />
+              <hr />
+              <br />
+             
+
+              {/* */}
+              
               {answer1?.slice(0).reverse().map((answer1) => (    
                    
                    <li className="bg-white text-black m-2 p-2 rounded-md" key={answer1?.id}>
@@ -492,6 +711,50 @@ let commentTotal1 = []
          <div className="bg-blue-500  m-2 p-2 rounded-md">
 
                 <h2 className="font-bold text-center ">QUIEREN COMPRAR</h2>
+
+
+                <form className="comment-form" onSubmit={handleSubmit2}>
+
+                    <label htmlFor="new-comment2">Respuesta:</label>
+
+                  <textarea
+                     id="new-comment2"
+                    name="new-comment2"
+                   value={newComment3}
+                   onChange={(event) => setNewComment3(event.target.value)}
+                   required
+                    />
+
+                <button type="submit">Contestar</button>
+
+                </form>
+
+ 
+
+              <ul className="comments-list">
+ 
+
+              {reverse2?.map((reverse2) => (    
+            
+                <li className="bg-white text-black m-2 p-2 rounded-md" key={reverse2?.createdAt}>
+                <span className="user">{user?.name}: </span>
+                 {reverse2?.text}          
+                </li>         
+
+                ))}
+
+              </ul>
+
+ 
+                 <br />
+                  <hr />
+                 <br />
+ 
+
+
+
+
+
               {answer2?.slice(0).reverse().map((answer2) => (    
                    
                    <li className="bg-white text-black m-2 p-2 rounded-md" key={answer2?.id}>
@@ -510,8 +773,7 @@ let commentTotal1 = []
               
 
 
-
-              <ul className="comments-list">
+{ /* <ul className="comments-list">
              
 
                 {commentTotal1?.map((commentTotal1) => (    
@@ -524,7 +786,8 @@ let commentTotal1 = []
                 ))}
 
               </ul>
-
+ */ }
+              
 
 
 
@@ -553,7 +816,7 @@ let commentTotal1 = []
           <span  >{ sale?  
           
           <div className="mb-2">
-           <Comment1 comments1={comment1} /> 
+           <Comment1 comments1={comment1} user={user} post={post}/> 
           </div>
  
           : " " }</span> 
@@ -563,7 +826,7 @@ let commentTotal1 = []
          <span  >{ sale2?  
           
           <div className="mb-2">
-           <Comment2 comments2={comment2} /> 
+           <Comment2 comments2={comment2} user={user} post={post}/> 
           </div>
  
           : " " }</span> 
@@ -613,14 +876,22 @@ let commentTotal1 = []
    
         </div>
 
-
+       
                 
 
     <div className="mb-8">
-      <Comment comments={postId2?.comments} /> 
+      <Comment comments={postId2a?.post?.commens} comment4={comment4} user={user} post={postId2a?.post} /> 
     </div>
      
+     <div className="bg-black p-2 m-4 ">
+      <button className="text-white" onClick={handleDeleteClick} >Borrar el ultimo</button>
+     </div>
+    
+     <div className="bg-black p-2 m-4 ">
+      <button className="text-white" onClick={handleDeleteClickAll} >Borrar todo</button>
+     </div>
 
+     
     </section>
     
     </div>

@@ -3,6 +3,8 @@ import React from 'react'
 import { createSlice } from "@reduxjs/toolkit";//
 import blogApi from "../../api/blog"; //
 
+console.log(" estoy en inicio de admin.slice.js");
+
 const adminSlice = createSlice({
   name: 'myPosts',
   initialState: 'myPosts',
@@ -12,6 +14,8 @@ const adminSlice = createSlice({
 })
 
 export const { setMyPost } = myPostsSlice.actions
+
+console.log(" estoy en final de admin.slice.js");
 
 export default adminSlice
 

@@ -8,6 +8,10 @@ import { useNavigate } from "react-router-dom";//
 
 
 const Header = () => {
+
+  console.log("estoy en inicio de  Header.jsx  ")
+ 
+
   const [showMenu, setShowMenu] = useState(false);
   //const [admin, setAdmin] = useState(false);
   
@@ -26,12 +30,47 @@ const Header = () => {
   function handleLogout() {
     localStorage.clear();
     navigate("/");
-    window.location.reload();
+    window.location.reload();  //para reiniciar la pagina
   }
 
-  const { user } = useSelector((state) => state);
+
+
+ //let { user } = useSelector((state) => state);
+  //  console.log({user});
+
+  let user1 = ""
+
+ // let user = ""
+  
+/**/
+
+   let { user } = useSelector((state) => state);
+    //let user = user;
+    
+      if (!user?.id) {
+
+         user1 = JSON.parse(localStorage.getItem("user"));//se lo convierte de json 
+         console.log({user1});
+
+         user = user1;
+
+        }
+
+
+
+  //  user = user1
+    
+
+/*
+  useEffect(() => {
+
+    }, [ user]); */
+
   //const jsonObject = JSON.parse( user);
   console.log({user});
+
+
+ console.log("estoy en final de  Header.jsx  ")
 
   return (  
     
@@ -124,8 +163,8 @@ const Header = () => {
                 />
 
                 {showMenu && (
-                  <div className="menu">
-                    <button className=" text-white font-bold" onClick={handleLogout}> {/* logoutButton  */}
+                  <div className=" bg-blue-300 text-center m-2 rounded-[50%] "> {/* menu  */}
+                    <button className="text-black font-bold " onClick={handleLogout}> {/* logoutButton  */}
                       Salir
                     </button>
                   </div>

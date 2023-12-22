@@ -7,6 +7,9 @@ import { useNavigate } from "react-router";//
 
 
 const Register = () => {
+
+  console.log("estoy en inicio de  Register.jsx  ")
+  
   
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -33,6 +36,8 @@ const Register = () => {
     dispatch(registerThunk(formData));
     navigate("/");
   };
+
+console.log("estoy en final de  Register.jsx  ")
 
   return (
     <div className="register">

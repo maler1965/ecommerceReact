@@ -2,9 +2,11 @@ import { createSlice } from "@reduxjs/toolkit";//
 //import blogApi from "../../api/blog"; //
 import axios from "axios";//
 
+console.log("estoy en inicio de  myPosts.slice.js ")
 
 
 const myPostsSlice = createSlice({
+  
   name: 'myPosts',
   initialState: {
     myPosts: localStorage.getItem("myPosts") ?? [],
@@ -24,6 +26,7 @@ export default myPostsSlice.reducer
 // 
 export const getMyPostsThunk = () => (dispatch) => {
 
+  console.log("estoy dentro de  getMyPostsThunk  ")
 
   const headers = {
     Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -44,7 +47,7 @@ export const getMyPostsThunk = () => (dispatch) => {
       ) ;
 };
 
-
+console.log("estoy en final de  myPosts.slice.js ")
 /*
 export const getMyPostsThunk = () => (dispatch) => {
 

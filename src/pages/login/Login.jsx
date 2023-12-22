@@ -8,6 +8,9 @@ import "./login.css"; //
 
 const Login = () => {
 
+  console.log("estoy en inicio de  Login.jsx  ")
+ 
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -39,6 +42,7 @@ const Login = () => {
   };
 
 //pedro
+ console.log("estoy en final de  Login.jsx  ")
 
   return (
 <section  className="m-4">

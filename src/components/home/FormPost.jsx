@@ -4,6 +4,8 @@ import { useForm } from "react-hook-form";//
 import usePostCrud from "../../hooks/usePostCrud";//
 
 const FormPost = ({ isCloseForm, setIsCloseForm, socket }) => {
+
+  console.log(" estoy en FormPost.jsx inicio ")
   
   const { handleSubmit, reset, register } = useForm();
   const [file, setFile] = useState([]);
@@ -35,6 +37,8 @@ const FormPost = ({ isCloseForm, setIsCloseForm, socket }) => {
   };
 
 
+  console.log(" estoy en FormPost.jsx final ")
+
   return (
     <div
       onClick={handleClick}
@@ -45,7 +49,7 @@ const FormPost = ({ isCloseForm, setIsCloseForm, socket }) => {
         className="formpost__form"
         onSubmit={handleSubmit(submit)}
       >
-        <h2 className="formpost__title">Create a new Post</h2>
+        <h2 className="font-bold text-center">CREAR UN NUEVO PRODUCTO</h2>  {/*formpost__title */}
         <div className="formpost__section">
           <label className="formpost__label" htmlFor="post-title">
             Titulo del Producto

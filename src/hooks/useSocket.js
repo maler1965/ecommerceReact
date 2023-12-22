@@ -2,6 +2,8 @@ import { useMemo, useEffect, useState } from "react";
 import io from "socket.io-client";
 
 export const useSocket = (serverPath) => {
+
+  console.log("estoy en inicio de  useSocket.js  ")
   
   const socket = useMemo( //es para recordar datos, memorisar
     () =>
@@ -28,6 +30,8 @@ export const useSocket = (serverPath) => {
       setOnline(false);
     });
   }, [socket]);
+
+  console.log("estoy en final de  useSocket.js  ")
 
   return {
     socket,

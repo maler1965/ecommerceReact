@@ -80,7 +80,10 @@ Primero, debes configurar tu tienda de Redux:
 
 
 // store.js
+
 import { configureStore } from "@reduxjs/toolkit"; // antes era asi:  import { createStore } from 'redux';
+
+console.log("estoy en inicio de  datos.js de la carpeta utils ")
 
 const initialState = {
   globalVariable: 'Este es un valor global',
@@ -96,6 +99,8 @@ function rootReducer(state = initialState, action) {
 }
 
 const store = createStore(rootReducer);
+
+console.log("estoy en final de  datos.js de la carpeta utils ")
 
 export default store;
 

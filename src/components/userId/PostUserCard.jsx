@@ -3,6 +3,8 @@ import "./styles/postCard.css";//
 
 const PostUserCard = ({ post }) => {
 
+  console.log("estoy en inicio de  PostUserCard.jsx  ")
+
   const navigate = useNavigate();
 
   const handleCardClick = () => {
@@ -11,7 +13,8 @@ const PostUserCard = ({ post }) => {
     //console.log({ myid })
   };
 
-  
+  console.log("estoy en final de  PostUserCard.jsx  ")
+
   return (
     <article onClick={handleCardClick} className="userpost">
 

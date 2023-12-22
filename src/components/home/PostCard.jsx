@@ -11,13 +11,28 @@ import usePostCrud from "../../hooks/usePostCrud";//
 
 const PostCard = ({ post }) => {
   
+console.log("estoy en inicio de  PostCard.jsx  ")
+
+
   //const [info, setInfo] = useState(true);
 
 
-  localStorage.setItem("postProduct", JSON.stringify(post)); // se lo guarda como json para ser recogido como json y convertido a javascript
+  //localStorage.setItem("postProduct", JSON.stringify(post)); // se lo guarda como json para ser recogido como json y convertido a javascript
 
   const { user } = useSelector((state) => state);
   console.log({user});
+
+
+  /*
+  let user1 = user
+
+  if (!user?.id) {
+    user1 = JSON.parse(localStorage.getItem("user"));//se lo convierte de json 
+    console.log({user1});
+  }
+
+    user = user1
+    */
 
   const { postId2, getPostById2 } = usePostCrud(); // el postId2 seria de los productos generales es decir de los de todos los vendedores o los selectos
   localStorage.setItem("postId2", JSON.stringify(postId2)); // se lo guarda como json
@@ -33,7 +48,7 @@ const PostCard = ({ post }) => {
   console.log({userNowId}) // id del visitante
   console.log(productId) //id del producto al que se hizo click
   console.log(userProductId) // id del dueno del producto
-    //id del usuario que hico el comentario, anteriormente era el usuario visitante
+    //id del usuario que hizo el comentario, anteriormente era el usuario visitante
 
   
   const handleCardClick = () => {
@@ -44,10 +59,13 @@ const PostCard = ({ post }) => {
       navigate(`/user2/${productId}`);  // este id es el general, del producto al que se hizo click
       
     } else {
-      
+      localStorage.setItem("postProduct", JSON.stringify(post)); // se lo guarda como json
       console.log(" Estoy en, if user no null")
       getPostById2(`${productId}`);
       navigate(`/post/${userNowId}`); //este id es el del visitante
+
+      
+
       //setInfo(true)
       //console.log({ info })
     }
@@ -59,6 +77,8 @@ const PostCard = ({ post }) => {
 console.log({ post})
 //const usermi = post.user
 //console.log({ usermi})
+
+console.log("estoy en final de  PostCard.jsx  ")
 
   return (
     <main className="truncate p-2 w-[300px] h-[500px]">
