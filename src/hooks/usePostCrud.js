@@ -4,6 +4,7 @@ import { getAllPostThunk } from "../store/slices/posts.slice";
 import { getMyPostsThunk } from "../store/slices/myPosts.slice";
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -11,9 +12,13 @@ const usePostCrud = () => {
 
   console.log("estoy en inicio de  usePostCrud.js  ")
 
+  const navigate = useNavigate();
+
 
   const [postId, setPostId] = useState();
   const [postId2, setPostId2] = useState();
+  const [delComment, setDelComment] = useState();
+  const [delCommentAll, setDelCommentAll] = useState();
 
   console.log({postId2 })
   console.log({postId })
@@ -21,7 +26,7 @@ const usePostCrud = () => {
   const dispatch = useDispatch();
 
   
-  // POST - Crear un nuevo posts
+  // POST - Crear un nuevo posts      setDelCommentAll
   const createNewPost = (formData, socket) => {
 
     console.log("estoy en inicio de  createNewPost  ")
@@ -90,15 +95,33 @@ const usePostCrud = () => {
       .delete(`http://localhost:3000/api/v1/comments/${id}`, { headers })
 
        // .delete(`/posts/${id}`)
-        .then(() => {
+       // .then(() => {
 
-          console.log("estoy en   deletePostById2One despues de then ")
-          dispatch(getAllPostThunk());
-          dispatch(getMyPostsThunk());
-          console.log("estoy en deletePostById2One  despues de dispatch(getAllPostThunk()")
+        .then((res) => {
+        console.log("estoy en   deletePostById2One despues de then ")
+         // dispatch(getAllPostThunk());
+        //  dispatch(getMyPostsThunk());  nouComments
+
+        console.log({res});
+        console.log(res.data.nouComments);
+        setDelComment(res.data.nouComments) //guardar comentario actual junto con los demas de este usuario 
+        console.log("se creo")
+  
+        localStorage.setItem("delComment", res.data.nouComments); //
+       localStorage.setItem("postId2D", JSON.stringify(res.data.nouComments));
+       
+        console.log("estoy en deletePostById2One  despues de localStorage")
+        navigate(`/post/${id}`)
         })
+
+
         .catch((err) => console.log(err));
     };
+
+
+
+
+
 
 
      // DELETE - Borrar un post
@@ -117,13 +140,27 @@ const usePostCrud = () => {
       .delete(`http://localhost:3000/api/v1/comments/all/${id}`, { headers })
 
        // .delete(`/posts/${id}`)
-        .then(() => {
+        //.then(() => {
+          .then((res) => {
 
           console.log("estoy en   deletePostById2All despues de then ")
-          dispatch(getAllPostThunk());
-          dispatch(getMyPostsThunk());
+         // dispatch(getAllPostThunk());
+        //  dispatch(getMyPostsThunk());
+
+        console.log({res});
+        console.log(res.data.nouCommentsAll);
+        setDelCommentAll(res.data.nouCommentsAll) //guardar comentario actual junto con los demas de este usuario 
+        console.log("se creo")
+  
+        localStorage.setItem("delCommentAll", res.data.nouCommentsAll); //
+       localStorage.setItem("postId2All", JSON.stringify(res.data.nouCommentsAll));
+
           console.log("estoy en deletePostById2All  despues de dispatch(getAllPostThunk()")
+          navigate(`/post/${id}`)
+
         })
+
+
         .catch((err) => console.log(err));
     };
 
@@ -172,9 +209,11 @@ const usePostCrud = () => {
  
        .then((res) => {
          // socket.emit("new-post", res.data.post);
-         console.log("probando getPostById2 de usePostCrud", res.data);
-         setPostId2(res.data); //.post
+         console.log("probando getPostById2 de usePostCrud", res.data ); //.commens
+         setPostId2(res.data); //.commens
+         navigate(`/user2/${id}`)
         })
+
         .catch(err => {
           console.log("probando getPostById2, estoy en error2")
           console.log(err)
@@ -200,6 +239,8 @@ console.log("estoy en final de  usePostCrud.js  ")
     getPostById2,
     postId,
     postId2,
+    delComment,
+    delCommentAll,
   };
 };
 

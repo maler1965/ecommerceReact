@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";//
 
 
-const Comment = ({ comments, comment4, post, user }) => {
+const Comment = ({ comment1bc, comments, comment4, post, user }) => {
   
   console.log("estoy en inicio de  Comment.jsx ")
 
@@ -39,14 +39,35 @@ if (comment1a) {
   console.log({ comments5 })
 }
   
+console.log({comment1bc })
 
- 
+let count = 0;
+
+if (!comment1bc){
+  comment1bc = [{id:1, name: "CambiaOvende", text: "No hay comentarios", }]
+  //let text = [1, 2, 3, 4, 5]
+  //comment1bc = [1, 2, 3, 4, 5]
+ // count = comment1bc?.push(text);  "No hay comentarios"
+}
+
+
+
+
+
+
+console.log({ count })
+
 console.log({ comments5 })
 
-let commentReverse = comments?.reverse()
+//let commentReverse = comments?.reverse()
+//lconsole.log({comment1bc })et commentReverse = comment1bc.reverse()
+
+//console.log({commentReverse })
+
 //commentReverse = []
 //comments =  []
  console.log({ comments })
+ console.log({comment1bc })
 
   const handleSubmit = (event) => {
 
@@ -104,7 +125,7 @@ console.log("estoy en final de  Comment.jsx ")
 
       <ul className="comments-list">
 
-        {commentReverse?.map((comment) => (
+        {comment1bc?.post?.commens.map((comment) => (
 
           <li key={comment?.id}>
             <span className="user">{comment?.name}: </span>
@@ -116,6 +137,11 @@ console.log("estoy en final de  Comment.jsx ")
 
       
      {/* 
+commentReverse
+comment1bc
+comment1b
+post.commens
+
       <p>
       <span className="comments-peter">Comentario actual: </span>   {comment}
       </p>  */}

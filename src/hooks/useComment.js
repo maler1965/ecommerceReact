@@ -10,6 +10,7 @@ const useComment = () => {
   console.log("estoy en inicio de  useComment.js  ")
 
   const [comment1a, setComment1a] = useState();
+  const [comment1b, setComment1b] = useState();
   const [comment1, setComment1] = useState();
   const [comment2, setComment2] = useState();
 
@@ -42,12 +43,18 @@ const useComment = () => {
         console.log({res});
         console.log(res.data.message);
         console.log(res.data.comment.text);//"se creo"
-        console.log(res.data.comment);
+        console.log(res.data.comment); // userComments,
         setComment1a(res.data.comment) //guardar comentario actual
+        console.log(res.data.userComments);
+        setComment1b(res.data.userComments) //guardar comentario actual junto con los demas de este usuario 
         console.log("se creo")
-        console.log({ comment1a })
-       localStorage.setItem("comment1a", res.data.comment); //cambie
+  
+        localStorage.setItem("comment1a", res.data.comment); //
         localStorage.setItem("postId2", JSON.stringify(res.data.comment));
+        //localStorage.setItem("comment1b", JSON.stringify(res.data.userComments));
+       localStorage.setItem("comment1b", res.data.userComments); //
+        localStorage.setItem("postId2b", JSON.stringify(res.data.userComments));
+
         navigate(`/post/${id}`)
       })
       //.catch((err) => console.log(err));
@@ -149,7 +156,7 @@ const useComment = () => {
 
 
 
-  const getComment1a = ( id) => {
+  const getComment1a = (id ) => {
 
     console.log("estoy en inicio de  getComment1a  ")
 
@@ -205,6 +212,7 @@ const useComment = () => {
     createComment2,
     getComment1a,
     comment1a,
+    comment1b,
     comment1,
     comment2,
   };

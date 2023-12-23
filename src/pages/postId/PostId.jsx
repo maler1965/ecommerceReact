@@ -7,6 +7,7 @@ import "./postId.css"; //
 import useComment2 from "../../hooks/useComment2";//
 import useComment1 from "../../hooks/useComment1";//
 import useComment from "../../hooks/useComment";//
+//import { useNavigate } from "react-router-dom";
 /* ----------- */
 
 //
@@ -16,25 +17,51 @@ const PostId = () => {
   
   console.log("estoy en inicio de  PostId.jsx  ")
   
+ // const navigate = useNavigate();
 
   const {  comment2, getComment2 } = useComment2();
   const {  comment1, getComment1 } = useComment1();
-  const {  comment1a, getComment1a } = useComment();
+  const {  comment1a, comment1b,  getComment1a } = useComment();
+  //const {  comment1b,  createComment } = useComment();
+  //const comment1b = useComment();
   //const { postId, getPostById } = usePostCrud(); // el postId2 seria de los productos generales es decir de los de todos los vendedores o los selectos
 
 //el postId seria del usuario que esta visitando
 
    const {postId2, getPostById2} = usePostCrud();
 
-  const post = JSON.parse(localStorage.getItem("postProduct"));//se lo convierte de json a javascript si se lo guardo como json
+  const post = JSON.parse(localStorage.getItem("postProduct")); //se lo convierte de json a javascript si se lo guardo como json
   //const postIdNew = JSON.parse(localStorage.getItem("postId2"));//se lo convierte de json a javascript si se lo guardo como json
 
-  //const post = localStorage.getItem("postProduct")    // postId2
+
+
+  let comment1bc = []
+  /* */
+  if (!comment1b){
+  //comment1bc = localStorage.getItem("postId2b")
+  comment1bc = JSON.parse(localStorage.getItem("postId2b")); 
+  //comment1b = JSON.parse(localStorage.getItem("postId2b"))
+  } else {
+    comment1bc = comment1b
+  }
+  //comment1b = JSON.parse(localStorage.getItem("postId2b"))
+  //console.log({comment1bc});
+  //const commMy = comment1bc?.[0]
+ // console.log({commMy});
+
+
+
+  //const comment1b = localStorage.getItem("comment1b")    // postId2
 
   //const jsonPost = JSON.parse( post);
   //console.log({jsonPost});
 
-  //const postId2 = JSON.parse(localStorage.getItem("postId2"))
+
+let delComment = JSON.parse(localStorage.getItem("postId2D"))
+ 
+  console.log({comment1bc});
+
+
 
   const comment =  localStorage.getItem("comment2")
 let comment3 = []
@@ -104,6 +131,21 @@ console.log("estoy fuera de if comment1a de PostId  ")
   //getPostById(id); comment1a
 
 
+/*
+  useEffect(() => {
+    console.log("estoy dentro de useEffect delComment de  PostId  ")
+    comment1bc = delComment
+    console.log({comment1bc});
+   // navigate(`/user2/${id}`)
+  }, [ delComment ]); //comment2
+*/
+
+  
+  if (delComment){
+    comment1bc = delComment
+    delComment = []
+  }
+
   console.log({comment});
   console.log({comment1});
   console.log({comment2});
@@ -111,13 +153,19 @@ console.log("estoy fuera de if comment1a de PostId  ")
   console.log({comment4});
   console.log({postId2});
   console.log({comment1a});
+  console.log({comment1b});
+  console.log({delComment});
+  console.log({comment1bc});
+
+
+
 
 console.log("estoy en final de  PostId.jsx  ")
 
   return (
     <div className="postid_content">
       <UserInfo comment1={comment1} comment2={comment2} postId2={postId2}  post={post} />
-      <PostIdInfo comment1={comment1} comment4={comment4} comment3={comment3} comment2={comment2}  postId2a={postId2} post={post} />
+      <PostIdInfo  comment1bc={comment1bc} comment1={comment1} comment4={comment4} comment3={comment3} comment2={comment2}  postId2a={postId2} post={post} />
     </div>
   );
 };

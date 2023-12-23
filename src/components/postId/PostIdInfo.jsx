@@ -12,9 +12,9 @@ import usePostCrud from "../../hooks/usePostCrud";//
 
 
 
-const PostIdInfo = ({ comment2, comment1, comment4, postId2a, post, comment3 }) => { //
+const PostIdInfo = ({  comment1bc, comment2, comment1, comment4, postId2a, post, comment3 }) => { //
 
-  console.log("estoy en inicio de  PostIdInfo.jsx ")
+  console.log("estoy en inicio de  PostIdInfo.jsx ")// postId2a
 
   const [newComment2, setNewComment2] = useState("");
   const [newComment3, setNewComment3] = useState("");
@@ -38,14 +38,13 @@ const PostIdInfo = ({ comment2, comment1, comment4, postId2a, post, comment3 }) 
 
  /*
  let user1 = user
-
- if (!user?.id) {
-   user1 = JSON.parse(localStorage.getItem("user"));//se lo convierte de json 
-   console.log({user1});
+*/
+ if (!comment1bc) {
+ comment1bc = postId2a 
  }
 
-   user = user1
-*/
+   //user = user1
+
 
 
   const { posts } = useSelector((state) => state);
@@ -526,6 +525,7 @@ const handleDeleteClick = () => {
  console.log("estoy en final de  PostIdInfo.jsx ")
 
  console.log({ comment1})
+ console.log({comment1bc })
 
   return (
     <div>
@@ -880,7 +880,7 @@ const handleDeleteClick = () => {
                 
 
     <div className="mb-8">
-      <Comment comments={postId2a?.post?.commens} comment4={comment4} user={user} post={postId2a?.post} /> 
+      <Comment  comment1bc={comment1bc} comments={postId2a?.post?.commens} comment4={comment4} user={user} post={postId2a?.post} /> 
     </div>
      
      <div className="bg-black p-2 m-4 ">
