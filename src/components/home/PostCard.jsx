@@ -35,7 +35,18 @@ console.log("estoy en inicio de  PostCard.jsx  ")
     */
 
   const { postId2, getPostById2 } = usePostCrud(); // el postId2 seria de los productos generales es decir de los de todos los vendedores o los selectos
-  localStorage.setItem("postId2", JSON.stringify(postId2)); // se lo guarda como json
+  
+  console.log({ postId2})
+
+/*
+  if (postId2){
+    localStorage.setItem("postId2", JSON.stringify(postId2));
+      }
+   */   
+
+  //localStorage.setItem("postId2", JSON.stringify(postId2)); // se lo guarda como json
+
+  //localStorage.setItem("post", JSON.stringify(post)); // se lo guarda como json
 
   const navigate = useNavigate();
   //console.log(post)
@@ -56,9 +67,11 @@ console.log("estoy en inicio de  PostCard.jsx  ")
     if (!userNowId ){
       
       console.log(" Estoy en, if user null")
+      localStorage.setItem("postProduct", JSON.stringify(post)); // se lo guarda como json
       navigate(`/user2/${productId}`);  // este id es el general, del producto al que se hizo click
       
     } else {
+      
       localStorage.setItem("postProduct", JSON.stringify(post)); // se lo guarda como json
       console.log(" Estoy en, if user no null")
       getPostById2(`${productId}`);

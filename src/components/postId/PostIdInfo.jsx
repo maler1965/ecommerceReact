@@ -38,17 +38,29 @@ const PostIdInfo = ({  comment1bc, comment2, comment1, comment4, postId2a, post,
 
  /*
  let user1 = user
-*/
+
  if (!comment1bc) {
  comment1bc = postId2a 
  }
-
+*/
    //user = user1
 
 
-
+/*
   const { posts } = useSelector((state) => state);
   console.log({ posts })
+
+
+
+  if (!user){
+
+    if(posts){
+
+    }
+
+  }
+
+  */
 
   console.log({ post })
 
@@ -507,6 +519,7 @@ const handleSubmit2 = (event) => {
 const handleDeleteClick = () => {
 
   deletePostById2One(user?.id);
+  console.log("userId", user?.id )
   //navigate(`/user2/${productId}`);
   navigate(`/post/${user?.id}`);
   //postId2a = []
@@ -515,6 +528,7 @@ const handleDeleteClick = () => {
  const handleDeleteClickAll = () => {
 
   deletePostById2All(user?.id);
+  console.log("userId", user?.id )
  // navigate(`/user2/${productId}`);
   navigate(`/post/${user?.id}`);
  // postId2a = []
@@ -527,6 +541,8 @@ const handleDeleteClick = () => {
  console.log({ comment1})
  console.log({comment1bc })
 
+//
+
   return (
     <div>
     <section className="postidinfo">
@@ -537,11 +553,11 @@ const handleDeleteClick = () => {
          <div>
 
           <div  className="text-center p-2 m-4 text-2xl">
-            <h2>{postId2a?.post.title}</h2>
+            <h2>{postId2a?.post?.title}</h2>
           </div>
            
           <div className=" flex justify-center text-center text-2xl">
-            <img src={postId2a?.post.PostImgs?.[0].postImgUrl} alt="" /> 
+            <img src={postId2a?.post?.PostImgs?.[0].postImgUrl} alt="" /> 
           </div>
               
 
@@ -555,7 +571,7 @@ const handleDeleteClick = () => {
           <div className="m-4 m-8 px-4">
             {/*  <h2>hola</h2>*/}
              
-              <p> {postId2a?.post.content}</p>
+              <p> {postId2a?.post?.content}</p>
 
               <h2>Precio:</h2>
 
@@ -880,7 +896,7 @@ const handleDeleteClick = () => {
                 
 
     <div className="mb-8">
-      <Comment  comment1bc={comment1bc} comments={postId2a?.post?.commens} comment4={comment4} user={user} post={postId2a?.post} /> 
+      <Comment  comment1bc={comment1bc} comments={postId2a?.post?.commens} comment4={comment4} user={user} post={post} /> 
     </div>
      
      <div className="bg-black p-2 m-4 ">
@@ -904,6 +920,8 @@ const handleDeleteClick = () => {
 
 
                   {/* 
+postId2a?.post
+
 
  <p className="font-bold"> COMENTARIOS PÚBLICOS </p>
 

@@ -41,10 +41,16 @@ axios
     
     .then((res) => {
     console.log("probando Posts", res.data)
-    dispatch(setPost(res.data))})
+    dispatch(setPost(res.data))
+    //navigate("/")
+  })
+
     .catch((err) => {
       console.log("probando Posts, error")
       console.log(err);
+
+      localStorage.setItem("Error_getAllPostThunk_postsSlice", JSON.stringify(err?.response?.data?.message));
+      //navigate("/error")
     });
 };
 

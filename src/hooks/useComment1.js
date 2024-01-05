@@ -10,6 +10,7 @@ const useComment1 = () => {
   console.log("estoy en inicio de  useComment1.js  ")
 
   const [comment1, setComment1] = useState();
+  const [comment1C, setComment1C] = useState();
 
  // const dispatch = useDispatch();
  const navigate = useNavigate();
@@ -39,10 +40,14 @@ const useComment1 = () => {
         console.log({res});
        // console.log(res.data.message);
        console.log(res.data.comment1.text);//"se creo"
-        setComment1(res.data.comment1.text) //guardar comentario actual
+        setComment1(res.data.comment1.text) //guardar comentario actual     
         console.log("se creo")
         console.log( res.data.comment1 )
+        console.log( res.data.userComments1)
+        setComment1C(res.data.userComments1)
         localStorage.setItem("comment1", res.data.comment1.text);
+        localStorage.setItem("comments1C", JSON.stringify(res.data.userComments1) );
+        //localStorage.setItem("comments1", JSON.stringify(res.data.comments1));
         navigate(`/post/${id}`)
       })
 
@@ -52,8 +57,11 @@ const useComment1 = () => {
       .catch(err => {
         console.log("probando comment1, estoy en error")
         console.log({err})
-        navigate("/login")
-        window.alert(err.response.data.message + ". " + "" + "Tiempo de uso terminado, pero no te preocupes createComment1, solo da click en 'Entrar' otra vez.")
+
+        localStorage.setItem("Error_createComment1_useComment1", JSON.stringify(err?.response?.data?.message));
+       // navigate("/error")
+        //navigate("/login")
+        //window.alert(err.response.data.message + ". " + "" + "Tiempo de uso terminado, pero no te preocupes createComment1, solo da click en 'Entrar' otra vez.")
         }) ;
 
   };
@@ -61,7 +69,7 @@ const useComment1 = () => {
 
 //===================
 
-const getComment1 = ( id) => {
+const getComment1 = ( id) => { //
 
   console.log("estoy dentro de getComment1 ,inicio")
 
@@ -87,18 +95,26 @@ const getComment1 = ( id) => {
       setComment1(res.data.comments1) //guardar comentario actual
       console.log("se consigui")
       //console.log(res.data.comments2.text)
-      localStorage.setItem("comments1", res.data.comments1);
-     // navigate(`/post/${id}`)
+      //localStorage.setItem("comments1", res.data.comments1);
+      localStorage.setItem("comments1", JSON.stringify(res.data.comments1));
+      navigate(`/post/${id}`)
+
     })
 
 
-    //.catch((err) => console.log(err));
+    //.catch((err) => console.log(err));  "/error"    navigate("/error")
 
     .catch(err => {
       console.log("probando comment1, estoy en error")
       console.log({err})
-      navigate("/login")
-      window.alert(err.response.data.message + ". " + "" + "Tiempo de uso terminado, pero no te preocupes getComment1, solo da click en 'Entrar' otra vez.")
+
+      localStorage.setItem("Error_getComment1_useComment1", JSON.stringify(err?.response?.data?.message));
+      //navigate("/error")
+
+     // navigate(`/post/${id}`)
+     // navigate(`/user2/${id}`)
+      //navigate("/login")
+     // window.alert(err.response.data.message + ". " + "" + "Tiempo de uso terminado, pero no te preocupes getComment1, solo da click en 'Entrar' otra vez.")
       }) ;
 
 };
@@ -112,6 +128,7 @@ console.log("estoy en final de  useComment1.js  ")
   return {
     createComment1, //al llamar a la funcion useComment puedes desetruccturar esta funcion o el estado de abajo comment
     comment1,
+    comment1C,
     getComment1,
   };
   

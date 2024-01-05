@@ -34,6 +34,7 @@ const Comment1 = ({ comments1, comments2, user, post }) => {
 
    }
 
+   const reverCommentPost = commentPost.reverse()
 
   console.log({ user }) //
   console.log({ post })
@@ -55,7 +56,13 @@ const Comment1 = ({ comments1, comments2, user, post }) => {
 
 //<p className="user" >{comments?.[0].user?.name}: <span>{newComment} </span> </p>
 
+console.log({ commentPost})
+console.log({ reverCommentPost})
+
 console.log("estoy en final de  Comment1.jsx ")
+
+
+
 
   return (
     
@@ -84,7 +91,7 @@ console.log("estoy en final de  Comment1.jsx ")
 
       <ul className="comments-list">
 
-        {commentPost?.map((comment) => (
+        {reverCommentPost?.map((comment) => (
 
           <li key={comment?.id}>
             <span className="user">{comment?.name}: </span>
@@ -92,7 +99,11 @@ console.log("estoy en final de  Comment1.jsx ")
           </li>         
 
         ))}
+
+
        {/*
+
+       commentPost
       
       <p>
       <span className="comments-peter">Comentario actual: </span>   {comment}

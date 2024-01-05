@@ -11,14 +11,17 @@ import { UserId } from "./pages/userId/UserId";//
 import Header from "./components/shared/Header";//
 import Home from "./pages/home/Home"; //
 import Login from "./pages/login/Login";//
+import Error from "./pages/error2/Error";//
 import PostId from "./pages/postId/PostId";//
 import PostId2 from "./pages/postId/PostId2";//
 import ProtectedRoutes from "./pages/shared/ProtectedRoutes";//
 import Register from "./pages/register/Register";//
 import PostCard2 from "./components/home/PostCard2";
+//import React, { useEffect } from 'react';
+
 //import PostId2 from "./pages/postId/PostId2";//
 
-/*
+/* error
 console.log("estoy en inicio de  PostId  ")
 console.log("estoy en final de  PostId  ")
 */
@@ -28,6 +31,22 @@ function App() {
 
   console.log("estoy en inicio de  App.jsx  ")
  
+  //=====================
+  useEffect(() => {
+    // Función para borrar datos al recargar la página
+    const clearLocalStorageOnUnload = () => {
+      localStorage.clear();
+    };
+
+    // Agregar el evento antes de que la página se descargue
+    window.addEventListener('beforeunload', clearLocalStorageOnUnload);
+
+    // Limpieza del evento al desmontar el componente
+    return () => {
+      window.removeEventListener('beforeunload', clearLocalStorageOnUnload);
+    };
+  }, []);
+  //=====================
 
   const dispatch = useDispatch();
 
@@ -71,6 +90,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/user2/:id" element={<PostId2 />} />
+        <Route path="/error" element={<Error />} />
       {/*   <Route path="/user" element={<PostCard2 />} />*/}
         <Route path="*" element={<h1>Esta ruta no existe</h1>} />
 

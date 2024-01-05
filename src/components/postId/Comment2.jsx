@@ -4,6 +4,7 @@ import useComment2 from "../../hooks/useComment2";//
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
+
 const Comment2 = ({ comments2, user, post }) => {
   
   console.log("estoy en inicio de  Comment2.jsx ")
@@ -37,7 +38,7 @@ const Comment2 = ({ comments2, user, post }) => {
 
    }
 
-
+   const reverCommentPost = commentPost.reverse()
 
 
 
@@ -93,7 +94,7 @@ console.log("estoy en final de  Comment2.jsx ")
 
       <ul className="comments-list">
 
-        {commentPost?.map((comment2) => (
+        {reverCommentPost?.map((comment2) => (
 
           <li key={comment2?.id}>
             <span className="user">{comment2?.name}: </span>
@@ -102,7 +103,12 @@ console.log("estoy en final de  Comment2.jsx ")
 
         ))}
       
+
+
       {/*
+
+      commentPost
+
       <p>
       <span className="comments-peter">Comentario actual: </span>   {comment}
       </p> */}

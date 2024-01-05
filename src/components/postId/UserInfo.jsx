@@ -2,13 +2,13 @@ import { useState } from "react";//
 import "./styles/userinfo.css";//
 import { useNavigate } from "react-router-dom";//
 
-const UserInfo = ({ postId, postId2 }) => {
+const UserInfo = ({  postId2 }) => { //postId,
 
   console.log("estoy en inicio de  UserInfo.jsx ")
 
   const [isFollow, setIsFollow] = useState(false);
 
-  console.log({postId});
+ // console.log({postId});
   console.log({postId2});
   //console.log({postUser});
 
@@ -22,6 +22,8 @@ const UserInfo = ({ postId, postId2 }) => {
 
   console.log("estoy en final de  UserInfo.jsx ")
 
+  //
+
   return (
     <article className="userinfo__content">
 
@@ -33,7 +35,7 @@ const UserInfo = ({ postId, postId2 }) => {
    
 
           <p className="userinfo__name" >
-            {postId2?.post.user?.name}
+            {postId2?.post?.user?.name}
           </p>
 </div>
 
@@ -48,7 +50,7 @@ const UserInfo = ({ postId, postId2 }) => {
 
         {/* */}
 
-        <p>{postId2?.post.user?.description}</p>
+        <p>{postId2?.post?.user?.description}</p>
 
         <small>22 Jul 2023</small>  
 
@@ -57,7 +59,7 @@ const UserInfo = ({ postId, postId2 }) => {
 
 
       <header className="userinfo__header">
-        <img src={postId2?.post.user?.profileImgUrl} alt="" />
+        <img src={postId2?.post?.user?.profileImgUrl} alt="" />
       </header>
       
      

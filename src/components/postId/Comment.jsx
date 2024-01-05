@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";//
 
 
+
 const Comment = ({ comment1bc, comments, comment4, post, user }) => {
   
   console.log("estoy en inicio de  Comment.jsx ")
@@ -16,12 +17,19 @@ const Comment = ({ comment1bc, comments, comment4, post, user }) => {
 
   //const { comment1a } = useComment(); //no se puede desestructurar comment1a porque no es una funcion, es un estado local
 
+  console.log({ post })
+
+ let  comment1bCo = []   
+ //comment1bCo = comment1bc 
+ comment1bCo.push(comment1bc)
+
 
   //console.log({ comment1a })  comment1a,
   //const {postId2, deletePostById2} = usePostCrud();
  
   const navigate = useNavigate();
  
+  
 
   //const { id } = useParams();
 
@@ -40,22 +48,28 @@ if (comment1a) {
 }
   
 console.log({comment1bc })
-
-let count = 0;
-
-if (!comment1bc){
-  comment1bc = [{id:1, name: "CambiaOvende", text: "No hay comentarios", }]
+ 
+if (comment1bc?.post?.commens.length === 0){ //es decir si esta vacio
+  console.log({  comment1bc }),
+  comment1bc = null //{ post: { commens: [{null,}] }  }  
   //let text = [1, 2, 3, 4, 5]
-  //comment1bc = [1, 2, 3, 4, 5]
+  //comment1bc = [1, 2, 3, 4, 5]     post?.commens
+ // count = comment1bc?.push(text);  "No hay comentarios"
+}
+
+//let count = 0;
+
+if (!comment1bc?.post?.commens){
+  console.log({  comment1bc }),
+  comment1bc = { post: { commens: [{id:1, name: "CambiaOvende", text: "No hay comentarios", }] }  }  
+  //let text = [1, 2, 3, 4, 5]
+  //comment1bc = [1, 2, 3, 4, 5]     post?.commens
  // count = comment1bc?.push(text);  "No hay comentarios"
 }
 
 
 
-
-
-
-console.log({ count })
+//console.log({ count })
 
 console.log({ comments5 })
 
@@ -68,6 +82,8 @@ console.log({ comments5 })
 //comments =  []
  console.log({ comments })
  console.log({comment1bc })
+ //console.log({reverCommentPost })
+
 
   const handleSubmit = (event) => {
 
@@ -77,6 +93,7 @@ console.log({ comments5 })
     console.log( "newComment", newComment )
     const textId = { textId: newComment, postId: post?.id }
     console.log( "textId", textId )
+    console.log( "userId", user?.id )
     createComment(textId, user?.id);
      
     setNewComment("");
@@ -85,18 +102,39 @@ console.log({ comments5 })
     
   };
 
+
 //<p className="user" >{comments?.[0].user?.name}: <span>{newComment} </span> </p>
 
 /*
-const handleDeleteClick = () => {
+const handleDeleteClick = () => {   
 
   deletePostById2(user?.id);
   navigate(`/post/${user?.id}`);
  }
+
 */
 
 
+
+let reveCommentPost = comment1bCo?.[0]
+
+if(comment1bCo?.[0]?.post?.commens.length >= 2){
+ reveCommentPost = comment1bCo?.[0]?.post?.commens.reverse(); 
+ console.log({reveCommentPost })
+}
+ 
+
+// Ten en cuenta que reverse() modifica el arreglo original y devuelve una referencia al mismo arreglo invertido. Si no quieres modificar el arreglo original, puedes crear una copia antes de invertirlo:
+
+//const reversedArray = [...comment1bc].reverse();
+const reverCommentPost = [...comment1bc?.post?.commens].reverse();  //comment1bc?.post?.commens.reverse()//tener cuidado con que parte de los datos de la variable se quiere revertir
+
+console.log({reverCommentPost })
+
 console.log("estoy en final de  Comment.jsx ")
+
+
+
 
   return (
     
@@ -125,7 +163,7 @@ console.log("estoy en final de  Comment.jsx ")
 
       <ul className="comments-list">
 
-        {comment1bc?.post?.commens.map((comment) => (
+        {reverCommentPost.map((comment) => (
 
           <li key={comment?.id}>
             <span className="user">{comment?.name}: </span>
@@ -137,6 +175,12 @@ console.log("estoy en final de  Comment.jsx ")
 
       
      {/* 
+.post?.commens
+
+comment1bc
+     
+.post?.commens
+
 commentReverse
 comment1bc
 comment1b

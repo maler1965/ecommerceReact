@@ -44,15 +44,15 @@ const useComment = () => {
         console.log(res.data.message);
         console.log(res.data.comment.text);//"se creo"
         console.log(res.data.comment); // userComments,
-        setComment1a(res.data.comment) //guardar comentario actual
+        setComment1a(res.data.comment); //guardar comentario actual
         console.log(res.data.userComments);
-        setComment1b(res.data.userComments) //guardar comentario actual junto con los demas de este usuario 
-        console.log("se creo")
+        setComment1b(res.data.userComments); //guardar comentario actual junto con los demas de este usuario 
+        console.log("se creo");
   
-        localStorage.setItem("comment1a", res.data.comment); //
+        //localStorage.setItem("comment1a", res.data.comment); //
         localStorage.setItem("postId2", JSON.stringify(res.data.comment));
         //localStorage.setItem("comment1b", JSON.stringify(res.data.userComments));
-       localStorage.setItem("comment1b", res.data.userComments); //
+       //localStorage.setItem("comment1b", res.data.userComments); //
         localStorage.setItem("postId2b", JSON.stringify(res.data.userComments));
 
         navigate(`/post/${id}`)
@@ -60,10 +60,14 @@ const useComment = () => {
       //.catch((err) => console.log(err));
 
       .catch(err => {
-        console.log("probando comment, estoy en error")
-        console.log({err})
-        navigate("/login")
-        window.alert(err.response.data.message + ". " + "" + "Tiempo de uso terminado, pero no te preocupes, solo da click en 'Entrar' otra vez.")
+        console.log("probando comment, estoy en error"),
+        console.log({err}),
+
+        localStorage.setItem("Error_createComment_useComment", JSON.stringify(err?.response?.data?.message))
+       //navigate("/error")
+
+       // navigate("/login")
+       // window.alert(err.response.data.message + ". " + "" + "Tiempo de uso terminado, pero no te preocupes, solo da click en 'Entrar' otra vez.")
         }
         ) ;
   };
@@ -107,7 +111,11 @@ const useComment = () => {
       .catch(err => {
         console.log("probando comment1, estoy en error")
         console.log({err})
-        window.alert(err.response.data.message + ". " + "" + "Tiempo de uso terminado, pero no te preocupes, solo da click en 'Entrar' otra vez.")
+
+        localStorage.setItem("Error_createComment1_useComment", JSON.stringify(err?.response?.data?.message))
+       // navigate("/error")
+
+        //window.alert(err.response.data.message + ". " + "" + "Tiempo de uso terminado, pero no te preocupes, solo da click en 'Entrar' otra vez.")
         }
         ) ;
   };
@@ -149,7 +157,11 @@ const useComment = () => {
       .catch(err => {
         console.log("probando comment2, estoy en error")
         console.log({err})
-        window.alert(err.response.data.message + ". " + "" + "Tiempo de uso terminado, pero no te preocupes, solo da click en 'Entrar' otra vez.")
+
+        localStorage.setItem("Error_createComment2_useComment", JSON.stringify(err?.response?.data?.message))
+       // navigate("/error")
+
+        //window.alert(err.response.data.message + ". " + "" + "Tiempo de uso terminado, pero no te preocupes, solo da click en 'Entrar' otra vez.")
         }
         ) ;
   };
@@ -186,14 +198,29 @@ const useComment = () => {
        // navigate(`/post/${id}`)
       })
   
-  
       //.catch((err) => console.log(err));
   
       .catch(err => {
+
+        if (err instanceof TipoDeError) {
+          // Manejar este tipo específico de error
         console.log("probando comments, estoy en error")
         console.log({err})
-        navigate("/login")
-        window.alert(err.response.data.message + ". " + "" + "Tiempo de uso terminado, pero no te preocupes getComment1, solo da click en 'Entrar' otra vez.")
+        console.log(err?.response?.data?.message)
+        localStorage.setItem("commError", JSON.stringify(err?.response?.data?.message));
+
+        localStorage.setItem("Error_getComment1a_useComment", JSON.stringify(err?.response?.data?.message))
+       // navigate("/error")
+
+        } else {
+          // Manejar otros tipos de errores
+         // navigate(`/user2/${id}`)
+        }
+
+       
+
+       // navigate(`/user2/${id}`) //navigate("/login")
+        //window.alert(err.response.data.message + ". " + "" + "Tiempo de uso terminado, pero no te preocupes getComment1, solo da click en 'Entrar' otra vez.")
         }) ;
   
   };

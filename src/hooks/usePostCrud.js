@@ -42,13 +42,21 @@ const usePostCrud = () => {
       .post("http://localhost:3000/api/v1/posts", formData, { headers })
 
       .then((res) => {
-        console.log("estoy en   createNewPost despues de then ")
-        socket.emit("new-post", res.data.post);
-        dispatch(getAllPostThunk());
-        dispatch(getMyPostsThunk());
+        console.log("estoy en   createNewPost despues de then "),
+        socket.emit("new-post", res.data.post),
+        dispatch(getAllPostThunk()),
+        dispatch(getMyPostsThunk()),
         console.log("estoy en  createNewPost  de usePostCrud")
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+      console.log(err),
+
+      localStorage.setItem("Error_createNewPost_usePostCrud", JSON.stringify(err?.response?.data?.message))
+      //navigate("/error")
+    }
+      
+      );
+      
   };
 
 
@@ -79,6 +87,9 @@ const usePostCrud = () => {
       .catch((err) => console.log(err));
   };
 
+
+
+
     // DELETE - Borrar un post
     const deletePostById2One = (id) => {
       //blogApi
@@ -98,24 +109,30 @@ const usePostCrud = () => {
        // .then(() => {
 
         .then((res) => {
-        console.log("estoy en   deletePostById2One despues de then ")
+        console.log("estoy en   deletePostById2One despues de then "),
          // dispatch(getAllPostThunk());
         //  dispatch(getMyPostsThunk());  nouComments
 
-        console.log({res});
-        console.log(res.data.nouComments);
-        setDelComment(res.data.nouComments) //guardar comentario actual junto con los demas de este usuario 
-        console.log("se creo")
+        console.log({res}),
+        console.log(res.data.nouComments),
+        setDelComment(res.data.nouComments), //guardar comentario actual junto con los demas de este usuario 
+        console.log("se creo"),
   
-        localStorage.setItem("delComment", res.data.nouComments); //
-       localStorage.setItem("postId2D", JSON.stringify(res.data.nouComments));
+        localStorage.setItem("delComment", JSON.stringify(res.data.nouComments)), 
+        localStorage.setItem("postId2D", JSON.stringify(res.data.nouComments)),
        
-        console.log("estoy en deletePostById2One  despues de localStorage")
+        console.log("estoy en deletePostById2One  despues de localStorage"),
         navigate(`/post/${id}`)
         })
 
 
-        .catch((err) => console.log(err));
+        .catch((err) => {
+        console.log(err)
+
+        localStorage.setItem("Error_deletePostById2One_usePostCrud", JSON.stringify(err?.response?.data?.message))
+        //navigate("/error")
+        }
+        );
     };
 
 
@@ -161,7 +178,13 @@ const usePostCrud = () => {
         })
 
 
-        .catch((err) => console.log(err));
+        .catch((err) => {
+
+          console.log(err),
+          localStorage.setItem("Error_deletePostById2All_usePostCrud", JSON.stringify(err?.response?.data?.message))
+          //navigate("/error")
+        }
+        );
     };
 
 
@@ -188,8 +211,11 @@ const usePostCrud = () => {
         setPostId(res.data.post);
        })
        .catch(err => {
-         console.log("probando getPostById, estoy en error")
-         console.log(err)
+         console.log("probando getPostById, estoy en error"),
+         console.log(err),
+
+         localStorage.setItem("Error_getPostById_usePostCrud", JSON.stringify(err?.response?.data?.message))
+         //navigate("/error")
          }
          )
 
@@ -210,17 +236,28 @@ const usePostCrud = () => {
        .then((res) => {
          // socket.emit("new-post", res.data.post);
          console.log("probando getPostById2 de usePostCrud", res.data ); //.commens
-         setPostId2(res.data); //.commens
-         navigate(`/user2/${id}`)
+         setPostId2(res.data); //.commens   response
+         //navigate(`/user2/${id}`)
         })
 
         .catch(err => {
           console.log("probando getPostById2, estoy en error2")
           console.log(err)
+          console.log(err?.response)
+          console.log(err?.response?.data)
+          console.log(err?.response?.data?.message)
+          localStorage.setItem("commError", JSON.stringify(err?.response?.data?.message));
+
+
+          dispatch(getAllPostThunk());
+
+          localStorage.setItem("Error_getPostById2_usePostCrud", JSON.stringify(err?.response?.data?.message))
+        // navigate("/error")
+          //navigate(`/user2/${id}`)
           }
           )
  
-       //.then((res) => setPostId(res.data.post))
+       //.then((res) => setPostId(res.data.post))  ///post/${id}
       // .catch((err) => console.log(err));
    };
 
